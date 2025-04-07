@@ -1,0 +1,25 @@
+npm i @heroicons/react
+npm i @headlessui/react
+npm i clsx
+npm i framer-motion tailwind-merge
+npm i react-day-picker
+npm i recharts
+npm i class-variance-authority
+npm i lucide-react
+npm i cmdk
+npm i @material-tailwind/react
+npm i zod
+
+npm i @radix-ui/react-icons
+npm i @radix-ui/react-avatar
+npm i @radix-ui/react-dropdown-menu
+npm i @radix-ui/react-dialog
+npm i @radix-ui/react-label
+npm i @radix-ui/react-select
+npm i @radix-ui/react-tabs
+npm i @radix-ui/react-popover
+npm i @radix-ui/react-slot
+npx shadcn@latest add separator
+
+
+npx shadcn-ui@latest add badge

@@ -1,0 +1,23 @@
+
+
+
+
+const url = [
+    'a',
+    'b',
+    'c'
+]
+
+
+
+
+
+
+export default async function Page() {
+    return (
+        <div>Hello World</div>
+    );
+}
+
+
+
