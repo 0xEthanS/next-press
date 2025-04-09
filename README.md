@@ -4,3 +4,15 @@ Converts Wordpress site to NextJS Application to improve SEO and site performanc
 
 ### Install Commands
 npm install --legacy-peer-deps
+
+
+
+### System to Find Nav-Links
+
+
+
+
+
+
+
+

@@ -84,20 +84,9 @@ const exhibitData = [
 
 
 
-function StaticBlogCard(
-	{ 
-		data, 
-
-	}: { 
-		data: any, 
-		
-	}
-) {
+function StaticBlogCard({ data }: { data: any }) {
 	return(
-		<div 
-	
-			className={cn(`rounded-lg flex justify-between flex-col not-prose gap-8`, `hover:bg-accent/75 transition-all`)}
-		>
+		<div className={cn(`rounded-lg flex justify-between flex-col not-prose gap-8`, `hover:bg-accent/75 transition-all`)}>
 			<div className="flex flex-col gap-5 shrink-0">
 				<div className='group relative overflow-hidden pb-[100%] rounded-lg'>
 					<Image 

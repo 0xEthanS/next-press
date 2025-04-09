@@ -62,16 +62,10 @@ export default function RootLayout(
 				}
 			>
 
-				{/*<Header />*/}
-				
-
-
+				<Header />
 				{children}
-
-
+				<Footer />
 				<TailwindIndicator />
-
-
 			</body>
 		</html>
 	);
