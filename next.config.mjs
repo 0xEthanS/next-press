@@ -4,6 +4,7 @@
 
 import { config } from "./wp.config.mjs"
 const baseUrl = config.baseUrl
+const hostname = config.hostname
 console.log("mjs file url import: ", baseUrl)
 
 
@@ -78,6 +79,76 @@ const nextConfig = {
                 port: "",
                 pathname: "/**",
             },
+
+
+			{
+                protocol: "https",
+                hostname: hostname,
+                port: "",
+                pathname: "/**",
+            },
+            {
+                protocol: "https",
+                hostname: "www." + hostname,
+                port: "",
+                pathname: "/**",
+            },
+
+
+			{
+                protocol: "https",
+                hostname: "https://oldhamkyhistory.com/",
+                port: "",
+                pathname: "/**",
+            },
+            {
+                protocol: "https",
+                hostname: "www." + "https://oldhamkyhistory.com/",
+                port: "",
+                pathname: "/**",
+            },
+
+
+            {
+                protocol: "https",
+                hostname: "i0.wp.com",
+                port: "",
+                pathname: "/**",
+            },
+            {
+                protocol: "https",
+                hostname: "www." + "i0.wp.com",
+                port: "",
+                pathname: "/**",
+            },
+
+
+			{
+                protocol: "https",
+                hostname: "i1.wp.com",
+                port: "",
+                pathname: "/**",
+            },
+            {
+                protocol: "https",
+                hostname: "www." + "i1.wp.com",
+                port: "",
+                pathname: "/**",
+            },
+
+
+			{
+                protocol: "https",
+                hostname: "i2.wp.com",
+                port: "",
+                pathname: "/**",
+            },
+            {
+                protocol: "https",
+                hostname: "www." + "i2.wp.com",
+                port: "",
+                pathname: "/**",
+            },
 		],
 	},
 };
@@ -89,3 +160,4 @@ export default nextConfig;
 
 
 
+// i2.wp.com

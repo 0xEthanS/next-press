@@ -2,23 +2,30 @@ import { ArrowRightIcon } from '@/components/icons'
 import Image from 'next/image';
 import Link from "next/link";
 import { Post } from "@/app/posts/lib/types";
-
-
-
-
 import {
 	getFeaturedMediaById,
 	getAuthorById,
 	getCategoryById,
 } from "@/app/posts/lib/actions";
-
-
 import { PostExcerpt } from "@/components/wp/post-excerpt"
+
+
+
+import { getPostImageUrl } from '@/components/wp/posts-thumbnail-image-handler';
+import { config } from "../../../wp.config.mjs"
+
+
+const fallbackImage = config.wp.thumbnailFallback
+const fallbackVenue = config.wp.fallbackVenue
 
 
 
 
 async function HeroMainPostCard({ post }: { post: Post }) {
+
+
+	const imageUrl = await getPostImageUrl(post);
+	const imageSrc = imageUrl || fallbackImage
 
 	
 	const media = await getFeaturedMediaById(post.featured_media);
@@ -48,7 +55,7 @@ async function HeroMainPostCard({ post }: { post: Post }) {
 			<div className="group flex w-full shrink-0 sm:w-1/2 xl:w-3/5">
 				<div className="relative size-full overflow-hidden rounded-lg pb-[100%]">
 					<Image 
-						src={media.source_url} 
+						src={imageSrc} 
 						alt={post.title.rendered}
 						width={400}
 						height={200}

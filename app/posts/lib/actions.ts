@@ -5,9 +5,17 @@ import {
 	Tag,
 	Page,
 	Author,
-	FeaturedMedia,
+	FeaturedMedia, 
+	Event, 
+	Venue, 
+	Organizer
 } from "@/app/posts/lib/types";
 import { config } from "../../../wp.config.mjs"
+
+
+
+
+const baseUrl = config.baseUrl
 
 
 
@@ -17,182 +25,90 @@ function getUrl(
 	query?: Record<string, any>
 ) {
 	const params = query ? querystring.stringify(query) : null
-	return `${config.baseUrl}${path}${params ? `?${params}` : ""}`
+	return `${baseUrl}${path}${params ? `?${params}` : ""}`
 }
 
 
 
 
-// Helper function to handle API responses
-async function fetchAPI<T>(url: string): Promise<T> {
-    const response = await fetch(url);
-    
-    if (!response.ok) {
-        throw new Error(`API call failed: ${response.statusText}`);
-    }
-    
-    const clonedResponse = response.clone();
-    
-    try {
-		const jsonResponse = await response.json();	
-        return jsonResponse
-    } catch (error) {
-        return await clonedResponse.json();
-    }
+export async function getAllPosts(filterParams?: {
+	author?: string;
+	tag?: string;
+	category?: string;
+}): Promise<Post[]> {  
+	const url = getUrl("/wp-json/wp/v2/posts", { author: filterParams?.author, tags: filterParams?.tag, categories: filterParams?.category });
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+	return posts;
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// WordPress Post Functions
-async function getAllPosts(
-	filterParams?: { 
-		author?: string; 
-		tag?: string; 
-		category?: string; 
-	}
-): Promise<Post[]> {
-    const url = getUrl(
-		"/wp-json/wp/v2/posts", 
-		{ 
-			author: filterParams?.author, 
-			tags: filterParams?.tag, 
-			categories: filterParams?.category 
-		}
-	);
-	const posts = await fetchAPI<Post[]>(url);
+export async function getThreePosts(filterParams?: { 
+	author?: string; 
+	tag?: string; 
+	category?: string; 
+}): Promise<Post[]> {
+    const url = getUrl("/wp-json/wp/v2/posts", { author: filterParams?.author, tags: filterParams?.tag, categories: filterParams?.category, per_page: 3 });
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
     return posts
 }
 
 
-async function getThreePosts(
-	filterParams?: { 
-		author?: string; 
-		tag?: string; 
-		category?: string; 
-	}
-): Promise<Post[]> {
-    const url = getUrl(
-		"/wp-json/wp/v2/posts", 
-		{ 
-			author: filterParams?.author, 
-			tags: filterParams?.tag, 
-			categories: filterParams?.category,
-			per_page: 3 // Limit to 3 posts
+
+
+export async function getPostById(id: number): Promise<Post> {
+	const url = getUrl(`/wp-json/wp/v2/posts/${id}`);
+	const response = await fetch(url);
+	const post: Post = await response.json();
+	return post;
+}
+
+
+export async function getPostBySlug(slug: string): Promise<Post> {
+	const url = getUrl("/wp-json/wp/v2/posts", { slug });
+	const response = await fetch(url);
+	const post: Post[] = await response.json();
+	return post[0];
+}
+
+
+
+
+
+
+
+
+export async function getAllCategories(): Promise<Category[]> {
+	let allCategories: Category[] = [];
+	let page = 1;
+	let hasMore = true;
+	
+	while (hasMore) {
+		const url = getUrl(`/wp-json/wp/v2/categories?page=${page}&per_page=100`);
+		const response = await fetch(url);
+		
+		if (!response.ok) {
+			// If we get a non-200 response (like 400 for exceeding available pages),
+			// we've reached the end of the available data
+			hasMore = false;
+			break;
 		}
-	);
-	const posts = await fetchAPI<Post[]>(url); 
-    return posts
-}
-
-
-async function getPostById(
-	id: number
-): Promise<Post> {
-    const url = getUrl(
-		`/wp-json/wp/v2/posts/${id}`
-	);
-	const post = await fetchAPI<Post>(url);
-    return post
-}
-
-
-async function getPostBySlug(
-	slug: string
-): Promise<Post> {
-    const url = getUrl(
-		"/wp-json/wp/v2/posts", 
-		{ slug }
-	);
-    const posts = await fetchAPI<Post[]>(url);
-    return posts[0];
-}
-
-
-async function getPostsByCategory(
-	categoryId: number
-): Promise<Post[]> {
-	const url = getUrl(
-		"/wp-json/wp/v2/posts", 
-		{ categories:  categoryId }
-	);
-	const posts = await fetchAPI<Post[]>(url);
-	return posts;
-}
-
-
-async function getPostsByTag(
-	tagId: number
-): Promise<Post[]> {
-	const url = getUrl(
-		"/wp-json/wp/v2/posts", 
-		{ tags:  tagId }
-	);
-	const posts = await fetchAPI<Post[]>(url);
-	return posts;
-}
-
-
-async function getPostsByAuthor(
-	authorId: number
-): Promise<Post[]> {
-	const url = getUrl(
-		"/wp-json/wp/v2/posts", 
-		{ author: authorId }
-	);
-	const posts = await fetchAPI<Post[]>(url);
-	return posts;
-}
-
-
-async function getPostsByAuthorSlug(
-	authorSlug: string
-): Promise<Post[]> {
-	const author = await getAuthorBySlug(authorSlug);
-	const url = getUrl(
-		"/wp-json/wp/v2/posts", 
-		{ author: author.id }
-	);
-	const posts = await fetchAPI<Post[]>(url);
-	return posts;
-}
-
-
-async function getPostsByCategorySlug(
-	categorySlug: string
-): Promise<Post[]> {
-	const category = await getCategoryBySlug(categorySlug);
-	const url = getUrl(
-		"/wp-json/wp/v2/posts", 
-		{ categories: category.id }
-	);
-	const posts = await fetchAPI<Post[]>(url);
-	return posts;
-}
-
-
-async function getPostsByTagSlug(
-	tagSlug: string
-): Promise<Post[]> {
-	const tag = await getTagBySlug(tagSlug);
-	const url = getUrl(
-		"/wp-json/wp/v2/posts", 
-		{ tags: tag.id }
-	);
-	const posts = await fetchAPI<Post[]>(url);
-	return posts;
+		
+		const categories: Category[] = await response.json();
+		
+		if (categories.length === 0) {
+			// No more categories to fetch
+			hasMore = false;
+		} else {
+			allCategories = [...allCategories, ...categories];
+			page++;
+		}
+	}
+	
+	return allCategories;
 }
 
 
@@ -202,195 +118,197 @@ async function getPostsByTagSlug(
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-async function getAllCategories(): Promise<Category[]> {
-	const url = getUrl(
-		"/wp-json/wp/v2/categories"
-	);
-	const categories = await fetchAPI<Category[]>(url);
-	return categories;
-}
-
-
-async function getCategoryById(
-	id: number
-): Promise<Category> {
-	const url = getUrl(
-		`/wp-json/wp/v2/categories/${id}`
-	);
-	const category = await fetchAPI<Category>(url);
+export async function getCategoryById(id: number): Promise<Category> {
+	const url = getUrl(`/wp-json/wp/v2/categories/${id}`);
+	const response = await fetch(url);
+	const category: Category = await response.json();
 	return category;
 }
 
 
-async function getCategoryBySlug(
-	slug: string
-): Promise<Category> {
-	const url = getUrl(
-		"/wp-json/wp/v2/categories", 
-		{ slug }
-	);
-	const category = await fetchAPI<Category[]>(url);
+
+
+export async function getCategoryBySlug(slug: string): Promise<Category> {
+	const url = getUrl("/wp-json/wp/v2/categories", { slug });
+	const response = await fetch(url);
+	const category: Category[] = await response.json();
 	return category[0];
 }
 
 
-async function getTagsByPost(
-	postId: number
-): Promise<Tag[]> {
-	const url = getUrl(
-		"/wp-json/wp/v2/tags", 
-		{ post:  postId }
-	);
-	const tags = await fetchAPI<Tag[]>(url);
+
+
+export async function getPostsByCategory(categoryId: number): Promise<Post[]> {
+	const url = getUrl("/wp-json/wp/v2/posts", { categories:  categoryId });
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+	return posts;
+}
+
+
+
+
+export async function getPostsByTag(tagId: number): Promise<Post[]> {
+	const url = getUrl("/wp-json/wp/v2/posts", { tags:  tagId });
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+	return posts;
+}
+
+
+
+
+export async function getTagsByPost(postId: number): Promise<Tag[]> {
+	const url = getUrl("/wp-json/wp/v2/tags", { post:  postId });
+	const response = await fetch(url);
+	const tags: Tag[] = await response.json();
 	return tags;
 }
 
 
-async function getAllTags(): Promise<Tag[]> {
-	const url = getUrl(
-		"/wp-json/wp/v2/tags"
-	);
-	const tags = await fetchAPI<Tag[]>(url);
+
+
+export async function getAllTags(): Promise<Tag[]> {
+	const url = getUrl("/wp-json/wp/v2/tags");
+	const response = await fetch(url);
+	const tags: Tag[] = await response.json();
 	return tags;
 }
 
 
-async function getTagById(
-	id: number
-): Promise<Tag> {
-	const url = getUrl(
-		`/wp-json/wp/v2/tags/${id}`
-	);
-	const tag = await fetchAPI<Tag>(url);
+
+
+export async function getTagById(id: number): Promise<Tag> {
+	const url = getUrl(`/wp-json/wp/v2/tags/${id}`);
+	const response = await fetch(url);
+	const tag: Tag = await response.json();
 	return tag;
 }
 
 
-async function getTagBySlug(
-	slug: string
-): Promise<Tag> {
-	const url = getUrl(
-		"/wp-json/wp/v2/tags", 
-		{ slug }
-	);
-	const tag = await fetchAPI<Tag[]>(url);
+
+
+export async function getTagBySlug(slug: string): Promise<Tag> {
+	const url = getUrl("/wp-json/wp/v2/tags", { slug });
+	const response = await fetch(url);
+	const tag: Tag[] = await response.json();
 	return tag[0];
 }
 
 
-async function getAllAuthors(): Promise<Author[]> {
-	const url = getUrl(
-		"/wp-json/wp/v2/users"
-	);
-	const authors = await fetchAPI<Author[]>(url);
-	return authors;
-}
 
 
-async function getAuthorById(
-	id: number
-): Promise<Author> {
-	const url = getUrl(
-		`/wp-json/wp/v2/users/${id}`
-	);
-	const author = await fetchAPI<Author>(url);
-	return author;
-}
-
-
-async function getAuthorBySlug(
-	slug: string
-): Promise<Author> {
-	const url = getUrl(
-		"/wp-json/wp/v2/users", 
-		{ slug }
-	);
-	const author = await fetchAPI<Author[]>(url);
-	return author[0];
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-async function getAllPages(): Promise<Page[]> {
-	const url = getUrl(
-		"/wp-json/wp/v2/pages"
-	);
-	const pages = await fetchAPI<Page[]>(url);
+export async function getAllPages(): Promise<Page[]> {
+	const url = getUrl("/wp-json/wp/v2/pages");
+	const response = await fetch(url);
+	const pages: Page[] = await response.json();
 	return pages;
 }
 
 
-async function getPageById(
-	id: number
-): Promise<Page> {
-	const url = getUrl(
-		`/wp-json/wp/v2/pages/${id}`
-	);
-	const page = await fetchAPI<Page>(url);
+
+
+export async function getPageById(id: number): Promise<Page> {
+	const url = getUrl(`/wp-json/wp/v2/pages/${id}`);
+	const response = await fetch(url);
+	const page: Page = await response.json();
 	return page;
 }
 
 
-async function getPageBySlug(
-	slug: string
-): Promise<Page> {
-	const url = getUrl(
-		"/wp-json/wp/v2/pages", 
-		{ slug }
-	);
-	const page = await fetchAPI<Page[]>(url);
+
+
+export async function getPageBySlug(slug: string): Promise<Page> {
+	const url = getUrl("/wp-json/wp/v2/pages", { slug });
+	const response = await fetch(url);
+	const page: Page[] = await response.json();
 	return page[0];
 }
 
 
 
 
+export async function getAllAuthors(): Promise<Author[]> {
+	const url = getUrl("/wp-json/wp/v2/users");
+	const response = await fetch(url);
+	const authors: Author[] = await response.json();
+	return authors;
+}
 
 
 
 
-async function getFeaturedMediaById(
-	id: number
-): Promise<FeaturedMedia> {
-	const url = getUrl(
-		`/wp-json/wp/v2/media/${id}`
-	);
-	const featuredMedia = await fetchAPI<FeaturedMedia>(url);
+export async function getAuthorById(id: number): Promise<Author> {
+	const url = getUrl(`/wp-json/wp/v2/users/${id}`);
+	const response = await fetch(url);
+	const author: Author = await response.json();
+	return author;
+}
+
+
+
+
+export async function getAuthorBySlug(slug: string): Promise<Author> {
+	const url = getUrl("/wp-json/wp/v2/users", { slug });
+	const response = await fetch(url);
+	const author: Author[] = await response.json();
+	return author[0];
+}
+
+
+
+
+export async function getPostsByAuthor(authorId: number): Promise<Post[]> {
+	const url = getUrl("/wp-json/wp/v2/posts", { author: authorId });
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+	return posts;
+}
+
+
+
+
+export async function getPostsByAuthorSlug(
+	authorSlug: string
+): Promise<Post[]> {
+	const author = await getAuthorBySlug(authorSlug);
+	const url = getUrl("/wp-json/wp/v2/posts", { author: author.id });
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+	return posts;
+}
+
+
+
+
+export async function getPostsByCategorySlug(
+	categorySlug: string
+): Promise<Post[]> {
+	const category = await getCategoryBySlug(categorySlug);
+	const url = getUrl("/wp-json/wp/v2/posts", { categories: category.id });
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+	return posts;
+}
+
+
+
+
+export async function getPostsByTagSlug(tagSlug: string): Promise<Post[]> {
+	const tag = await getTagBySlug(tagSlug);
+	const url = getUrl("/wp-json/wp/v2/posts", { tags: tag.id });
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+	return posts;
+}
+
+
+
+
+export async function getFeaturedMediaById(id: number): Promise<FeaturedMedia> {
+	const url = getUrl(`/wp-json/wp/v2/media/${id}`);
+	const response = await fetch(url);
+	const featuredMedia: FeaturedMedia = await response.json();
 	return featuredMedia;
 }
 
@@ -401,36 +319,16 @@ async function getFeaturedMediaById(
 
 
 
-export {
-	getAllPosts, 
-	getThreePosts, 
-	getPostById, 
-	getPostBySlug, 
-	getPostsByCategory, 
-	getPostsByTag, 
-	getPostsByAuthor, 
-	getPostsByAuthorSlug, 
-	getPostsByCategorySlug, 
-	getPostsByTagSlug, 
-
-	getAllCategories, 
-	getCategoryById, 
-	getCategoryBySlug, 
-	getTagsByPost, 
-	getAllTags, 
-	getTagById, 
-	getTagBySlug, 
-	getAllAuthors, 
-	getAuthorById, 
-	getAuthorBySlug, 
-
-	getAllPages, 
-	getPageById, 
-	getPageBySlug, 
-
-	getFeaturedMediaById, 
-}
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 

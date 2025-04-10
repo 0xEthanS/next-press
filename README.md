@@ -16,3 +16,19 @@ npm install --legacy-peer-deps
 
 
 
+## Helpful URL's
+    #### Posts:
+        https://example.org/wp-json/wp/v2/posts
+    
+    #### Pages: 
+        https://example.org/wp-json/wp/v2/pages
+
+    #### Media: 
+        https://example.org/wp-json/wp/v2/media
+
+
+
+
+
+
+

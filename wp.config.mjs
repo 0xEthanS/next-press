@@ -1,7 +1,18 @@
+import { hostname } from "os";
+
 export const config = {
 	//baseUrl: "https://windpress.wpenginepowered.com/",
 	//baseUrl: "https://aerialphotographylouisville.com/",
-	baseUrl: "https://oldhamkyhistory.com/",
+
+
+	//baseUrl: "https://oldhamkyhistory.com/",
+	//hostname: "oldhamkyhistory.com",
+	
+	//baseUrl: "https://slovenianunion.org/",
+	//hostname: "slovenianunion.org",
+
+	baseUrl: "https://ccamuseum.org/",
+	hostname: "ccamuseum.org",
 
 
 

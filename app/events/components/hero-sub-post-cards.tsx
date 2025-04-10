@@ -1,7 +1,7 @@
 import { ArrowRightIcon } from '@/components/icons'
 import Image from 'next/image';
 import Link from "next/link";
-import { getEventImageUrl } from '@/components/wp/thumbnail-image-handler';
+import { getEventImageUrl } from '@/components/wp/events-thumbnail-image-handler';
 import { config } from "../../../wp.config.mjs"
 
 

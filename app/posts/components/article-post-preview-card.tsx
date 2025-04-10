@@ -11,7 +11,20 @@ import { PostExcerpt } from "@/components/wp/post-excerpt"
 
 
 
+import { getPostImageUrl } from '@/components/wp/posts-thumbnail-image-handler';
+import { config } from "../../../wp.config.mjs"
+
+
+const fallbackImage = config.wp.thumbnailFallback
+const fallbackVenue = config.wp.fallbackVenue
+
+
+
+
 async function ArticlePostPreviewCard({ post }: { post: Post }) {
+
+	const imageUrl = await getPostImageUrl(post);
+	const imageSrc = imageUrl || fallbackImage
 
 	const media = await getFeaturedMediaById(post.featured_media);
 
@@ -38,7 +51,7 @@ async function ArticlePostPreviewCard({ post }: { post: Post }) {
 
 			<div className='group relative overflow-hidden rounded-lg pb-[60%]'>
 				<Image 
-					src={media.source_url} 
+					src={imageSrc} 
 					alt={post.title.rendered}
 					width={400}
 					height={200}

@@ -34,10 +34,6 @@ export function Header() {
 
     const transparentRoutes = [
         '/',
-        '/posts', 
-        '/posts/tags', 
-        '/posts/categories', 
-        '/posts/authors'
     ]
 
 

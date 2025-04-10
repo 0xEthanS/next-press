@@ -7,6 +7,16 @@ import {
 	getAuthorById,
 	getCategoryById,
 } from "@/app/posts/lib/actions";
+import { PostExcerpt } from "@/components/wp/post-excerpt"
+
+
+
+import { getPostImageUrl } from '@/components/wp/posts-thumbnail-image-handler';
+import { config } from "../../../wp.config.mjs"
+
+
+const fallbackImage = config.wp.thumbnailFallback
+const fallbackVenue = config.wp.fallbackVenue
 
 
 
@@ -18,6 +28,9 @@ async function HeroSubPostCard(
 		post: Post 
 	}
 ) {
+
+    const imageUrl = await getPostImageUrl(post);
+	const imageSrc = imageUrl || fallbackImage
 
 	
 	const media = await getFeaturedMediaById(post.featured_media);
@@ -46,7 +59,7 @@ async function HeroSubPostCard(
             <div className="flex w-full shrink-0 xl:w-32">
                 <div className="group relative size-full overflow-hidden rounded-lg pb-[100%]">
                     <Image 
-                        src={media.source_url} 
+                        src={imageSrc} 
                         alt={post.title.rendered}
                         width={400}
                         height={200}

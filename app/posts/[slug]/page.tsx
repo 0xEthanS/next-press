@@ -71,6 +71,16 @@ export default async function Page(
 	const slug = params.slug
 	const post = await getPostBySlug(slug);
 
+	console.log(post)
+
+
+
+
+
+
+
+
+
 
 	const featuredMedia = await getFeaturedMediaById(post.featured_media);
 
@@ -168,6 +178,8 @@ export default async function Page(
 			</div>
 
 
+
+
 			<div className="
 					bg-article-background
 				"
@@ -177,21 +189,25 @@ export default async function Page(
 						<div className='overflow-hidden'>
 
 
-							<div className='h-96 md:h-[560px] overflow-hidden rounded-lg bg-accent/25 mb-6 flex items-center justify-center sm:mb-8'>
-								
-								
-								
-								
-								<img
-									src={featuredMedia.source_url}
-									alt={post.title.rendered}
-									className="rounded-lg w-full" 
-								/>
+			
+							{post.featured_media !== 0 && featuredMedia?.source_url ? (
+								<div className='h-96 md:h-[560px] overflow-hidden rounded-lg bg-accent/25 mb-6 flex items-center justify-center sm:mb-8'>
+									<img
+										src={featuredMedia.source_url}
+										alt={post.title.rendered}
+										className="rounded-lg w-full" 
+									/>
+								</div>
+							) : (
+								<div></div>
+							)}
+					
 
 
 
 
-							</div>
+
+
 
 
 							<Article
@@ -204,7 +220,18 @@ export default async function Page(
 							/>
 
 
-							<div className='relative my-12 aspect-video w-full'>
+
+
+
+
+
+
+
+
+
+
+
+							{/*<div className='relative my-12 aspect-video w-full'>
 								<Image
 									src="/Hermitage-600x400.jpg" 
 									alt="Hermitage" 
@@ -213,7 +240,9 @@ export default async function Page(
 									height={400}
 								/>
 								Video Player
-							</div>
+							</div>*/}
+
+
 
 
 						</div>

@@ -1,6 +1,6 @@
 import { ArrowLeftIcon } from '@/components/icons'
 import { EmailForm1 } from "@/components/email-form";
-import { getEventImageUrl } from '@/components/wp/thumbnail-image-handler';
+import { getEventImageUrl } from '@/components/wp/events-thumbnail-image-handler';
 import { getAllEvents } from "@/app/events/lib/actions";
 import { SocialCluster } from "@/components/socials-cluster";
 
