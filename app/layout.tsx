@@ -37,8 +37,6 @@ export const metadata: Metadata = {
 	description: config.meatadata.description,
 };
 
-console.log("Hello World")
-
 
 
 

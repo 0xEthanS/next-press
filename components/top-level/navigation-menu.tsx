@@ -180,9 +180,9 @@ const ListItem = (
 			className={clsx(
 			"rounded-md", 
 				{
-					"bg-navbar-dropdown-accent-0":  [0, 3, 6].includes(index),
-					"bg-navbar-dropdown-accent-1": [1, 4, 7].includes(index), 
-					"bg-navbar-dropdown-accent-2": [2, 5, 8].includes(index)
+					"bg-navbar-dropdown-accent-0":  [0, 3, 6, 9, 12].includes(index),
+					"bg-navbar-dropdown-accent-1": [1, 4, 7, 10, 13].includes(index), 
+					"bg-navbar-dropdown-accent-2": [2, 5, 8, 11, 14].includes(index)
 				}
 			)}
 		>

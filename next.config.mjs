@@ -52,6 +52,10 @@ const cleanedUrl = extractRootDomain(baseUrl)
 
 
 
+
+
+
+
 const nextConfig = {
     images: {
 		remotePatterns: [
@@ -97,13 +101,13 @@ const nextConfig = {
 
 			{
                 protocol: "https",
-                hostname: "https://oldhamkyhistory.com/",
+                hostname: "oldhamkyhistory.com",
                 port: "",
                 pathname: "/**",
             },
             {
                 protocol: "https",
-                hostname: "www." + "https://oldhamkyhistory.com/",
+                hostname: "www.oldhamkyhistory.com",
                 port: "",
                 pathname: "/**",
             },
@@ -149,6 +153,13 @@ const nextConfig = {
                 port: "",
                 pathname: "/**",
             },
+
+            {
+                protocol: "https",
+                hostname: "**.xx.fbcdn.net",
+                port: "",
+                pathname: "/**",
+            }
 		],
 	},
 };
