@@ -20,9 +20,11 @@ export const ContentParser = (
 	const options = {
 
 		replace: (domNode: any) => {
+
+			//console.log("domNode: ", domNode)
+
+
 			if (!domNode.attribs) return;			
-
-
 
 
 			if (domNode.attribs && domNode.attribs.style) {
@@ -41,14 +43,6 @@ export const ContentParser = (
 					}
 				};
 			}
-
-
-
-
-
-
-
-
 
 
 			if (domNode.name === 'p') {
@@ -129,8 +123,6 @@ export const ContentParser = (
 			}
 
 
-
-
 			if (domNode.name === 'h1' || domNode.name === 'h2' || domNode.name === 'h3' || domNode.name === 'h4' || domNode.name === 'h5' || domNode.name === 'h6') {
 				
 				let alignment = ""
@@ -171,12 +163,6 @@ export const ContentParser = (
 					</div>
 				)
 			}
-
-
-
-
-
-
 
 
 			/*if (domNode.name === 'a') {
@@ -232,8 +218,6 @@ export const ContentParser = (
 			}
 
 
-
-
 			// Add this to your ContentParser options.replace function
 
 			// Handle tables
@@ -270,7 +254,6 @@ export const ContentParser = (
 			}
 
 
-
 			// Built for handling PDF Object
 			if (domNode.name === 'object') {
 				const {
@@ -304,12 +287,6 @@ export const ContentParser = (
 				console.log("----------Object Detected----------")
 			}
 
-
-
-
-
-
-			
 
 			if (domNode.name === 'img') {
 				const { 
@@ -592,7 +569,7 @@ export const ContentParser = (
 		}
 	};
 
-
+	
 
 
 	return (
@@ -603,61 +580,32 @@ export const ContentParser = (
 						max-w-full 
 						prose-neutral 
 						prose:font-sans 
-
-
 						dark:prose-invert 
-
-
 						xl:prose-lg 
-
-
 						prose-strong:font-bold 
-
-
-
-
 						prose-a:underline 
 						prose-a:hover:text-blue-500
-
-
-
-
-
-						
-
 						prose-li:mb-[0.85em] 
 						last:prose-li:mb-0 
 						prose-li:tracking-[0.01em] 
 						prose-li:text-base 
 						prose-li:has(img):ps-[4ch] 
-
-
 						prose-ul:ps-[2.5ch] 
 						prose-ul:text-base 
 						[&_>li]:prose-ul:list-disc 
 						[&_>ul]:prose-ul:mb-[0.85em] 
-
-
 						prose-ol:ps-[2.5ch] 
 						prose-ol:text-base 
 						[&_>li]:prose-ol:list-decimal 
 						[&_>ol]:prose-ol:mb-[0.85em] 
 						prose-ol:mt-0 
-
-
 						prose-blockquote:not-italic 
-
-
 						prose-pre:border 
 						prose-pre:bg-muted/25 
-
-
 						prose-img:m-0 
 						prose-img:rounded-lg 
 						prose-img:border 
 						prose-img:overflow-hidden 
-
-
 					`, 
 					
 					`
