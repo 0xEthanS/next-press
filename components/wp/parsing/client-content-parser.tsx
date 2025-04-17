@@ -7,10 +7,15 @@ import parse, { domToReact } from 'html-react-parser';
 import { cn } from "@/lib/utils";
 import parseStyle from 'style-to-object';
 
-export const ClientContentParser = ({
-	content,
-	className
-}: any) => {
+
+
+
+export const ClientContentParser = (
+	{
+		content,
+		className
+	}: any
+) => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	// Memoize the parser options object

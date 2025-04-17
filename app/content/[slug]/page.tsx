@@ -2,19 +2,34 @@ import { getPageBySlug } from "@/lib/wordpress";
 import { PageContent } from "@/components/pages/page-templates";
 import { processWPContent } from '@/components/wp/parsing/helpers/process-wp-content';
 
-
-//import { ContentParser } from "@/components/wp/parsing/content-parser";
+import { ServerContentParser } from "@/components/wp/parsing/server-content-parser";
 import { ClientContentParser } from "@/components/wp/parsing/client-content-parser";
 
-
-
 import { decode } from 'he';
+
+import { config } from "../../../wp.config.mjs";
+
+
 
 
 type Params = Promise<{ slug: string }>
 
 // Add this export to enable caching
 export const revalidate = 604800; // 7 days in seconds (60 * 60 * 24 * 7)
+
+
+
+
+const slugsArray = config.static.content
+
+
+
+export async function generateStaticParams() {
+    return slugsArray.map((slug) => ({ slug }));
+}
+
+
+
 
 
 
@@ -26,10 +41,10 @@ export default async function Page(
 ) {
 
 
-
-
 	const params = await props.params
     const slug = params.slug
+
+	const isStaticRoute = slugsArray.includes(slug);
 
 
 
@@ -57,6 +72,9 @@ export default async function Page(
 		<div className="">
 			<PageContent>
 
+
+
+
 				{title && 
 					<div className="
 							font-sans 
@@ -82,13 +100,25 @@ export default async function Page(
 					//mt-[17px] gives a 0px margin below the header
 				}
 
-				<ClientContentParser 
-					content={processedRenderedContent}
-					className="
-						space-y-6 
-						sm:space-y-8
-					"
-				/>
+
+
+
+				{isStaticRoute ? (
+                    // Use server-side parsing for static routes
+                    <ServerContentParser 
+                        content={processedRenderedContent}
+                        className="space-y-6 sm:space-y-8"
+                    />
+                ) : (
+                    // Use client-side parsing for dynamic routes
+                    <ClientContentParser 
+                        content={processedRenderedContent}
+                        className="space-y-6 sm:space-y-8"
+                    />
+                )}
+
+
+
 
 			</PageContent>
 		</div>

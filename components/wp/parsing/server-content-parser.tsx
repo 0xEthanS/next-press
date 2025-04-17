@@ -8,7 +8,7 @@ import parseStyle from 'style-to-object';
 
 
 
-export const ContentParser = (
+export const ServerContentParser = (
 	{ 
 		content, 
 		className 

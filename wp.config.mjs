@@ -371,6 +371,36 @@ export const config = {
 			},
 		]
 	},
+	static: {
+		content: [
+			'jean-t-lee-eulogy-delivered-by-medora-lee', 
+			'raymond-b-lee-donation-in-memory-of-jean-t-lee', 
+			'history-and-mission', 
+			'board-of-directors', 
+			'advisory-council', 
+			'associate-board', 
+			'staff', 
+			'in-memoriam', 
+			'obituary-of-mrs-jean-lee', 
+			'information-for-visitors', 
+			'group-visit', 
+			'current-exhibits', 
+			'video-archive', 
+			'lunar-new-year-history-and-traditions-explained', 
+			'education', 
+			'burnham-wildlife-corridor', 
+			'teaach-act', 
+			'chinese-american-asian-american-history-videos-on-pbs', 
+			'the-teaach-act-is-passed', 
+			'uncovering-asian-american-stories-in-evanston-and-the-midwest', 
+			'exhibitions-and-teaching-from-china-institute-in-america', 
+			'become-a-member', 
+			'donate', 
+			'volunteer', 
+			'contact-us', 
+			'4th-floor-room-rental',
+		]
+	},
 	wp: {
 		thumbnailFallback: '/tang-dynasty-stele.webp',
 		fallbackVenue: "Chinese American Museum of Chicago"

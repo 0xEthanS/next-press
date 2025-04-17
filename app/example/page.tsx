@@ -1,7 +1,7 @@
 import { getPageBySlug } from "@/lib/wordpress";
 import { PageContent } from "@/components/pages/page-templates";
 import { processWPContent } from '@/components/wp/parsing/helpers/process-wp-content';
-import { ContentParser } from "@/components/wp/parsing/content-parser";
+import { ServerContentParser } from "@/components/wp/parsing/server-content-parser";
 import { decode } from 'he';
 
 
@@ -12,7 +12,7 @@ import { decode } from 'he';
 
 
 
-const slugs = [ 
+const contentSlugs = [ 
     // Home
     'jean-t-lee-eulogy-delivered-by-medora-lee', // + 0
     'raymond-b-lee-donation-in-memory-of-jean-t-lee', // + 1
@@ -24,17 +24,9 @@ const slugs = [
     'staff', // + 6
     'in-memoriam', // + 7
     'obituary-of-mrs-jean-lee', // + 8
-
-
-
-    
     // Information for Visitors
     'information-for-visitors', // + 9
     'group-visit', // + 10
-
-
-
-
     // Events and Exhibits
     'current-exhibits', /////////////////////////////////////////////// + 11
     'video-archive', // + 12
@@ -44,35 +36,39 @@ const slugs = [
     'burnham-wildlife-corridor', /////////////////////////////////////////////// + 15
     // The Teaach Act
     'teaach-act', // + 16
-    'celebrating-asian-american-and-pacific-islander-heritage-month', // not page - 17
-    'moca-book-recommendations', // not page - 18
-    'chinese-american-asian-american-history-videos-on-pbs', // + 19
-    'the-teaach-act-is-passed', // + 20
-    'uncovering-asian-american-stories-in-evanston-and-the-midwest', // + 21
-    'asian-women-suffragists-2', // not page - 22
-    'shows-on-asian-americans-on-pbs-tv-links-to-watch-free', // not page - 23
-    'exhibitions-and-teaching-from-china-institute-in-america', // + 24
-
-
-
-
+    'chinese-american-asian-american-history-videos-on-pbs', // + 17
+    'the-teaach-act-is-passed', // + 18
+    'uncovering-asian-american-stories-in-evanston-and-the-midwest', // + 19
+    'exhibitions-and-teaching-from-china-institute-in-america', // + 20
     // Support
-    'become-a-member', // + 25
-    'donate', // + 26
-    'volunteer', // + 27
-
-
-
-
+    'become-a-member', // + 21
+    'donate', // + 22
+    'volunteer', // + 23
     // Contact Us
-    'contact-us', // + 28
-    '4th-floor-room-rental', /////////////////////////////////////////////// + 29
+    'contact-us', // + 24
+    '4th-floor-room-rental', /////////////////////////////////////////////// + 25
 
 
 
 
-    'welcome' // home page + 30
+    'welcome' // home page + 26
 ]
+
+
+
+
+const postSlugs = [
+    'celebrating-asian-american-and-pacific-islander-heritage-month', // not page - 1
+    'moca-book-recommendations', // not page - 2
+    'asian-women-suffragists-2', // not page - 3
+    'shows-on-asian-americans-on-pbs-tv-links-to-watch-free', // not page - 4
+]
+
+
+
+
+
+
 
 
 
@@ -84,7 +80,7 @@ const slugs = [
 
 export default async function Page() {
 
-    const slug = slugs[11]
+    const slug = contentSlugs[11]
 
 	//console.log("Content Slug: ", slug)
 
@@ -128,7 +124,7 @@ export default async function Page() {
 					//mt-[17px] gives a 0px margin below the header
 				}
 
-				<ContentParser content={processedRenderedContent} className="space-y-6 sm:space-y-8"/>
+				<ServerContentParser content={processedRenderedContent} className="space-y-6 sm:space-y-8"/>
 
 			</PageContent>
 
