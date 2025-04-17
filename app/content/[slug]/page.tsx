@@ -4,7 +4,7 @@ import { processWPContent } from '@/components/wp/parsing/helpers/process-wp-con
 
 
 //import { ContentParser } from "@/components/wp/parsing/content-parser";
-import { ContentParserClient } from "@/components/wp/parsing/content-parser-client";
+import { ClientContentParser } from "@/components/wp/parsing/client-content-parser";
 
 
 
@@ -82,7 +82,7 @@ export default async function Page(
 					//mt-[17px] gives a 0px margin below the header
 				}
 
-				<ContentParserClient 
+				<ClientContentParser 
 					content={processedRenderedContent}
 					className="
 						space-y-6 
