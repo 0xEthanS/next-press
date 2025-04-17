@@ -1,4 +1,4 @@
-import { getAllTags } from "@/app/posts/lib/actions";
+import { getAllTags } from "@/lib/wordpress";
 import { Metadata } from "next";
 import Link from "next/link";
 import clsx from "clsx";

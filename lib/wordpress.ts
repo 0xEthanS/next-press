@@ -1,152 +1,329 @@
 import querystring from 'query-string'
 import { config } from "../wp.config.mjs"
+import type { 
+	Post,
+  	Category,
+  	Tag,
+  	Page,
+  	Author,
+  	FeaturedMedia,
+} from './types';
 
 
 
 
-export type Page = {
-	id: number;
-	date: string;
-	date_gmt: string;
-	guid: {
-		rendered: string;
-	};
-	modified: string;
-	modified_gmt: string;
-	slug: string;
-	status: "publish" | "future" | "draft" | "pending" | "private";
-	type: string;
-	link: string;
-	title: {
-		rendered: string;
-	};
-	content: {
-		rendered: string;
-		protected: boolean;
-	};
-	excerpt: {
-		rendered: string;
-		protected: boolean;
-	};
-	author: number;
-	featured_media: number;
-	parent: number;
-	menu_order: number;
-	comment_status: "open" | "closed";
-	ping_status: "open" | "closed";
-	template: string;
-	meta: any[];
-};
+const baseUrl = config.baseUrl
 
 
 
 
-export type FeaturedMedia = {
-	id: number;
-	date: string;
-	slug: string;
-	type: string;
-	link: string;
-	title: {
-		rendered: string;
-	};
-	author: number;
-	caption: {
-		rendered: string;
-	};
-	alt_text: string;
-	media_type: string;
-	mime_type: string;
-	media_details: {
-		width: number;
-		height: number;
-		file: string;
-		sizes: {
-			[key: string]: {
-				file: string;
-				width: number;
-				height: number;
-				mime_type: string;
-				source_url: string;
-			};
-		};
-	};
-	source_url: string;
-};
+function getUrl(path: string, query?: Record<string, any>) {
 
-
-
-
-function getUrl(
-	path: string, 
-	query?: Record<string, any>
-) {
 	const params = query ? querystring.stringify(query) : null
-	return `${config.baseUrl}${path}${params ? `?${params}` : ""}`
+
+	return `${baseUrl}${path}${params ? `?${params}` : ""}`
+
 }
 
 
 
 
-// Helper function to handle API responses
-async function fetchAPI<T>(url: string): Promise<T> {
-    const response = await fetch(url);
-    
-    if (!response.ok) {
-        throw new Error(`API call failed: ${response.statusText}`);
-    }
-    
-    const clonedResponse = response.clone();
-    
-    try {
-		const jsonResponse = await response.json();	
-        return jsonResponse
-    } catch (error) {
-        return await clonedResponse.json();
-    }
+
+
+
+
+export async function getAllPosts(filterParams?: {author?: string;tag?: string;category?: string;}): Promise<Post[]> {  
+	const url = getUrl(
+		"/wp-json/wp/v2/posts", 
+		{ 
+			author: filterParams?.author, 
+			tags: filterParams?.tag, 
+			categories: filterParams?.category 
+		}
+	);
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+	return posts;
 }
 
 
+export async function getThreePosts(filterParams?: { author?: string; tag?: string; category?: string; }): Promise<Post[]> {
+    const url = getUrl(
+		"/wp-json/wp/v2/posts", 
+		{ 
+			author: filterParams?.author, 
+			tags: filterParams?.tag, 
+			categories: filterParams?.category, 
+			per_page: 3 
+		}
+	);
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+    return posts
+}
 
 
-async function getAllPages(): Promise<Page[]> {
+export async function getPostById(id: number): Promise<Post> {
+	const url = getUrl(
+		`/wp-json/wp/v2/posts/${id}`
+	);
+	const response = await fetch(url);
+	const post: Post = await response.json();
+	return post;
+}
+
+
+export async function getPostBySlug(slug: string): Promise<Post> {
+	const url = getUrl(
+		"/wp-json/wp/v2/posts", 
+		{ slug }
+	);
+	const response = await fetch(url);
+	const post: Post[] = await response.json();
+	return post[0];
+}
+
+
+export async function getAllCategories(): Promise<Category[]> {
+	const url = getUrl(
+		"/wp-json/wp/v2/categories"
+	);
+	const response = await fetch(url);
+	const categories: Category[] = await response.json();
+	return categories;
+}
+
+
+export async function getCategoryById(id: number): Promise<Category> {
+	const url = getUrl(
+		`/wp-json/wp/v2/categories/${id}`
+	);
+	const response = await fetch(url);
+	const category: Category = await response.json();
+	return category;
+}
+
+
+export async function getCategoryBySlug(slug: string): Promise<Category> {
+	const url = getUrl(
+		"/wp-json/wp/v2/categories", 
+		{ slug }
+	);
+	const response = await fetch(url);
+	const category: Category[] = await response.json();
+	return category[0];
+}
+
+
+export async function getPostsByCategory(categoryId: number): Promise<Post[]> {
+	const url = getUrl(
+		"/wp-json/wp/v2/posts", 
+		{ categories:  categoryId }
+	);
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+	return posts;
+}
+
+
+export async function getPostsByTag(tagId: number): Promise<Post[]> {
+	const url = getUrl(
+		"/wp-json/wp/v2/posts", 
+		{ tags:  tagId }
+	);
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+	return posts;
+}
+
+
+export async function getTagsByPost(postId: number): Promise<Tag[]> {
+	const url = getUrl(
+		"/wp-json/wp/v2/tags", 
+		{ post:  postId }
+	);
+	const response = await fetch(url);
+	const tags: Tag[] = await response.json();
+	return tags;
+}
+
+
+export async function getAllTags(): Promise<Tag[]> {
+	const url = getUrl(
+		"/wp-json/wp/v2/tags"
+	);
+	const response = await fetch(url);
+	const tags: Tag[] = await response.json();
+	return tags;
+}
+
+
+export async function getTagById(id: number): Promise<Tag> {
+	const url = getUrl(
+		`/wp-json/wp/v2/tags/${id}`
+	);
+	const response = await fetch(url);
+	const tag: Tag = await response.json();
+	return tag;
+}
+
+
+export async function getTagBySlug(slug: string): Promise<Tag> {
+	const url = getUrl(
+		"/wp-json/wp/v2/tags", 
+		{ slug }
+	);
+	const response = await fetch(url);
+	const tag: Tag[] = await response.json();
+	return tag[0];
+}
+
+
+export async function getAllPages(): Promise<Page[]> {
 	const url = getUrl(
 		"/wp-json/wp/v2/pages"
 	);
-	const pages = await fetchAPI<Page[]>(url);
+	const response = await fetch(url);
+	const pages: Page[] = await response.json();
 	return pages;
 }
 
 
-
-
-async function getPageById(
-	id: number
-): Promise<Page> {
+export async function getPageById(id: number): Promise<Page> {
 	const url = getUrl(
 		`/wp-json/wp/v2/pages/${id}`
 	);
-	const page = await fetchAPI<Page>(url);
+	const response = await fetch(url);
+	const page: Page = await response.json();
 	return page;
 }
 
 
 
 
+
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-async function getPageBySlug(
-	slug: string
-): Promise<Page> {
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+// Cache for pages during build process
+let pagesCache: {[slug: string]: Page} | null = null;
+
+
+
+// Get all pages with a higher per_page parameter
+export async function getAllPagesLikeAllOfThem(): Promise<Page[]> {
+	const url = getUrl(
+		"/wp-json/wp/v2/pages",
+		{ per_page: 100 } // Increase the per_page parameter to get more pages at once
+	);
+	const response = await fetch(url);
+	
+	if (!response.ok) {
+		throw new Error(`Failed to fetch pages: ${response.statusText}`);
+	}
+	
+	const pages: Page[] = await response.json();
+	return pages;
+}
+
+
+
+
+
+// Get all pages and convert to a map for easier lookup
+export async function getPagesMap(): Promise<{[slug: string]: Page}> {
+	// Use the cached version if available
+	if (pagesCache) {
+		return pagesCache;
+	}
+	
+	const pages = await getAllPagesLikeAllOfThem();
+	
+	// Create a map of slug -> page data
+	const pageMap: {[slug: string]: Page} = {};
+	pages.forEach(page => {
+		pageMap[page.slug] = page;
+	});
+	
+	// Store in cache
+	pagesCache = pageMap;
+	
+	return pageMap;
+}
+
+
+
+
+
+
+
+// Get a specific page by slug
+export async function getPageBySlug(slug: string): Promise<Page> {
+	// Check if we're in a build process (this is a heuristic)
+	const isBuildProcess = process.env.NODE_ENV === 'production' && !process.env.VERCEL_ENV;
+	
+	// For build process, use the cached map
+	if (isBuildProcess) {
+		const pagesMap = await getPagesMap();
+		if (pagesMap[slug]) {
+			return pagesMap[slug];
+		}
+	}
+	
+	// Fallback to individual fetch if needed
 	const url = getUrl(
 		"/wp-json/wp/v2/pages", 
 		{ slug }
 	);
-	const page = await fetchAPI<Page[]>(url);
-	return page[0];
+	const response = await fetch(url);
+	
+	if (!response.ok) {
+		throw new Error(`Failed to fetch page "${slug}": ${response.statusText}`);
+	}
+	
+	const pages: Page[] = await response.json();
+	return pages[0];
 }
+
+
+
+
+// Helper function specifically for static generation
+export async function getPagesForStaticGeneration(
+	targetSlugs: string[]
+): Promise<{[slug: string]: Page}> {
+	const allPagesMap = await getPagesMap();
+	
+	// Filter to only include the slugs we want
+	const filteredPages: {[slug: string]: Page} = {};
+	
+	targetSlugs.forEach(slug => {
+		if (allPagesMap[slug]) {
+			filteredPages[slug] = allPagesMap[slug];
+		} else {
+			console.warn(`Warning: Page with slug "${slug}" not found for static generation`);
+		}
+	});
+	
+	return filteredPages;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,26 +332,112 @@ async function getPageBySlug(
 
 
 
-async function getFeaturedMediaById(
-	id: number
-): Promise<FeaturedMedia> {
+
+
+
+
+
+export async function getAllAuthors(): Promise<Author[]> {
+	const url = getUrl(
+		"/wp-json/wp/v2/users"
+	);
+	const response = await fetch(url);
+	const authors: Author[] = await response.json();
+	return authors;
+}
+
+
+export async function getAuthorById(id: number): Promise<Author> {
+	const url = getUrl(
+		`/wp-json/wp/v2/users/${id}`
+	);
+	const response = await fetch(url);
+	const author: Author = await response.json();
+	return author;
+}
+
+
+export async function getAuthorBySlug(slug: string): Promise<Author> {
+	const url = getUrl(
+		"/wp-json/wp/v2/users", 
+		{ slug }
+	);
+	const response = await fetch(url);
+	const author: Author[] = await response.json();
+	return author[0];
+}
+
+
+export async function getPostsByAuthor(authorId: number): Promise<Post[]> {
+	const url = getUrl(
+		"/wp-json/wp/v2/posts", 
+		{ author: authorId }
+	);
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+	return posts;
+}
+
+
+export async function getPostsByAuthorSlug(authorSlug: string): Promise<Post[]> {
+	const author = await getAuthorBySlug(authorSlug);
+	const url = getUrl(
+		"/wp-json/wp/v2/posts", 
+		{ author: author.id }
+	);
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+	return posts;
+}
+
+
+export async function getPostsByCategorySlug(categorySlug: string): Promise<Post[]> {
+	const category = await getCategoryBySlug(categorySlug);
+	const url = getUrl(
+		"/wp-json/wp/v2/posts", 
+		{ categories: category.id }
+	);
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+	return posts;
+}
+
+
+export async function getPostsByTagSlug(tagSlug: string): Promise<Post[]> {
+	const tag = await getTagBySlug(tagSlug);
+	const url = getUrl(
+		"/wp-json/wp/v2/posts", 
+		{ tags: tag.id }
+	);
+	const response = await fetch(url);
+	const posts: Post[] = await response.json();
+	return posts;
+}
+
+
+export async function getFeaturedMediaById(id: number): Promise<FeaturedMedia> {
 	const url = getUrl(
 		`/wp-json/wp/v2/media/${id}`
 	);
-	const featuredMedia = await fetchAPI<FeaturedMedia>(url);
+	const response = await fetch(url);
+	const featuredMedia: FeaturedMedia = await response.json();
 	return featuredMedia;
 }
 
 
 
 
-export {
-	getAllPages, 
-	getPageById, 
-	getPageBySlug, 
 
-	getFeaturedMediaById, 
-}
+
+
+
+
+
+
+
+
+
+
 
 
 

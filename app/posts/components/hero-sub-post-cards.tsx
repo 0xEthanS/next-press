@@ -1,12 +1,12 @@
 import { ArrowRightIcon } from '@/components/icons'
 import Image from 'next/image';
 import Link from "next/link";
-import { Post } from "@/app/posts/lib/types";
+import { Post } from "@/lib/types";
 import {
 	getFeaturedMediaById,
 	getAuthorById,
 	getCategoryById,
-} from "@/app/posts/lib/actions";
+} from "@/lib/wordpress";
 import { PostExcerpt } from "@/components/wp/post-excerpt"
 
 

@@ -1,4 +1,4 @@
-import { getAllAuthors } from "@/app/posts/lib/actions";
+import { getAllAuthors } from "@/lib/wordpress";
 import Link from "next/link";
 import { Metadata } from "next";
 import clsx from "clsx";

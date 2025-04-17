@@ -1,4 +1,8 @@
-import { getPageBySlug } from "@/lib/wordpress";
+import { 
+    getPageBySlug, 
+    getPagesForStaticGeneration 
+} from "@/lib/wordpress";
+
 import { PageContent } from "@/components/pages/page-templates";
 import { processWPContent } from '@/components/wp/parsing/helpers/process-wp-content';
 
@@ -15,7 +19,7 @@ import { config } from "../../../wp.config.mjs";
 type Params = Promise<{ slug: string }>
 
 // Add this export to enable caching
-export const revalidate = 604800; // 7 days in seconds (60 * 60 * 24 * 7)
+// export const revalidate = 3600; // 7 days in seconds (60 * 60 * 24 * 7)
 
 
 
@@ -25,9 +29,14 @@ const slugsArray = config.static.content
 
 
 export async function generateStaticParams() {
-    return slugsArray.map((slug) => ({ slug }));
+    // Get all pages data at once in a single API call
+    const pagesData = await getPagesForStaticGeneration(slugsArray);
+    
+    // Create params from available pages
+    const params = Object.keys(pagesData).map(slug => ({ slug }));
+    
+    return params;
 }
-
 
 
 
@@ -50,6 +59,7 @@ export default async function Page(
 
 
 	const page = await getPageBySlug(slug);
+    
 	const title = page?.title?.rendered
 	const decodedTitle = decode(title)
 

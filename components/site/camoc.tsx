@@ -25,7 +25,7 @@ import { ArticlePreview } from '@/components/wp/article-preview'
 import { ArticlePostPreviewCard } from '@/app/posts/components/article-post-preview-card';
 
 //import {  getAllEvents } from "@/app/events/lib/actions";
-import { getThreePosts } from "@/app/posts/lib/actions";
+import { getThreePosts } from "@/lib/wordpress";
 
 
 

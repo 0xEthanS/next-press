@@ -3,7 +3,7 @@ import {
 	getAllAuthors, 
 	getAllTags, 
 	getAllCategories 
-} from "@/app/posts/lib/actions";
+} from "@/lib/wordpress";
 import { 
 	Pagination, 
 	PaginationContent, 

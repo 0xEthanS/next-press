@@ -1,4 +1,4 @@
-import { getAllCategories } from "@/app/posts/lib/actions";
+import { getAllCategories } from "@/lib/wordpress";
 import { Metadata } from "next";
 import Link from "next/link";
 import clsx from "clsx";

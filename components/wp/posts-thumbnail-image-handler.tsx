@@ -1,7 +1,7 @@
 import * as cheerio from 'cheerio';
 import { config } from "../../wp.config.mjs";
-import { Post } from "@/app/posts/lib/types";
-import { getFeaturedMediaById } from "@/app/posts/lib/actions";
+import { Post } from "@/lib/types";
+import { getFeaturedMediaById } from "@/lib/wordpress";
 
 
 

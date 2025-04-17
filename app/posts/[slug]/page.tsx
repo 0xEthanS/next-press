@@ -3,13 +3,22 @@ import Image from 'next/image';
 import { EmailForm1 } from "@/components/email-form";
 import Link from 'next/link';
 import { ArticlePostPreviewCard } from '@/app/posts/components/article-post-preview-card';
-import { getThreePosts } from "@/app/posts/lib/actions";
+
+
+
+
+
 import {
 	getPostBySlug,
 	getFeaturedMediaById,
 	getAuthorById,
 	getCategoryById,
-} from "@/app/posts/lib/actions";
+	getThreePosts
+} from "@/lib/wordpress";
+
+
+
+
 import { Metadata } from "next";
 import Balancer from "react-wrap-balancer";
 import { ArticlePreview } from '@/components/wp/article-preview'
