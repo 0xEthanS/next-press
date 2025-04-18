@@ -202,7 +202,12 @@ export const ServerContentParser = (
 
 
 				return (
-                    <Link href={finalHref} {...restAttribs} className='underline' legacyBehavior>
+                    <Link 
+						href={finalHref} 
+						{...restAttribs} 
+						className='underline' 
+						legacyBehavior
+					>
                         {
 							domToReact(
 								domNode.children, 
