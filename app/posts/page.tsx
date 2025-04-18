@@ -60,6 +60,7 @@ export default async function Page(
 	const authors = await getAllAuthors();
 	const tags = await getAllTags();
 	const categories = await getAllCategories();
+	console.log("---------- @/app/post functions ran ----------")
 
 
 
