@@ -41,12 +41,8 @@ async function ArticleEventPreviewCard({ post }: { post: any }) {
 
 
 	return (
-		<div className='flex flex-col gap-5'>
-
-
-
-
-			<div className='group relative overflow-hidden rounded-lg pb-[60%]'>
+        <div className='flex flex-col gap-5'>
+            <div className='group relative overflow-hidden rounded-lg pb-[60%]'>
 				<Image 
 					src={imageSrc} 
 					alt={imageAlt}
@@ -55,33 +51,24 @@ async function ArticleEventPreviewCard({ post }: { post: any }) {
 					className="rounded-lg absolute size-full object-cover transition-all duration-300 group-focus-within:scale-105 group-focus-within:blur-xs group-hover:scale-105 group-hover:blur-xs"
 				/>
 				<div className='absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-focus-within:opacity-100 group-hover:opacity-100'>
-					<Link href={linkHref} className='group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 border h-14 gap-4 px-6 py-2.5 group 
-							border-[#FBFAF4] 
-							bg-[#FBFAF4] 
-							text-[#091717] 
-							hover:border-[#E4E3D4] 
-							hover:bg-[#E4E3D4] 
-							active:border-[#E4E3D4] 
-							active:bg-[#E4E3D4] 
-						'
-					>
+					<Link
+                        href={linkHref}
+                        className='group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 border h-14 gap-4 px-6 py-2.5 group 
+                                border-[#FBFAF4] 
+                                bg-[#FBFAF4] 
+                                text-[#091717] 
+                                hover:border-[#E4E3D4] 
+                                hover:bg-[#E4E3D4] 
+                                active:border-[#E4E3D4] 
+                                active:bg-[#E4E3D4] 
+                            '
+                        legacyBehavior>
 						View Article
 						<ArrowRightIcon width={25} height={25} />
 					</Link>
 				</div>
 			</div>
-
-
-
-
-
-
-
-
-	
-
-
-			<div className="w-full flex flex-wrap gap-2 items-start text-xs">
+            <div className="w-full flex flex-wrap gap-2 items-start text-xs">
 
 				<div className="flex h-8 items-center rounded-xl px-2.5 shrink-0 w-fit 
 						bg-articles-accent
@@ -102,31 +89,20 @@ async function ArticleEventPreviewCard({ post }: { post: any }) {
 					{date}
 				</p>
 			</div>
-
-
-
-
-
-
-
-
-			<p className='tracking-[0.01em] text-base font-medium line-clamp-2 pb-1
+            <p className='tracking-[0.01em] text-base font-medium line-clamp-2 pb-1
 					text-articles-text
 				'
 			>
-				<Link href={linkHref}>
+				<Link href={linkHref} legacyBehavior>
 					{postTitle}
 				</Link>
 			</p>
-
-			<PostExcerpt 
+            <PostExcerpt 
 				excerpt={excerpt} 
 				sliceSize={12}
 				linkHref={linkHref}
 			/>
-
-
-			<div>
+            <div>
 				<a className='group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 h-auto gap-2 p-0 hover:underline 
 						border-articles-border 
 						bg-transparent 
@@ -140,10 +116,8 @@ async function ArticleEventPreviewCard({ post }: { post: any }) {
 					</span>
 				</a>
 			</div>
-
-
-		</div>
-	);
+        </div>
+    );
 }
 
 

@@ -80,8 +80,8 @@ export default async function Page(
 
 
 	return (
-		<div className="">
-			<PageContent>
+        <div className="">
+            <PageContent>
 
 
 
@@ -117,18 +117,18 @@ export default async function Page(
 				{isStaticRoute ? (
 
                     // Use server-side parsing for static routes
-                    <ServerContentParser 
+                    (<ServerContentParser 
                         content={processedRenderedContent}
                         className="space-y-6 sm:space-y-8"
-                    />
+                    />)
 
                 ) : (
 
                     // Use client-side parsing for dynamic routes
-                    <ClientContentParser 
+                    (<ClientContentParser 
                         content={processedRenderedContent}
                         className="space-y-6 sm:space-y-8"
-                    />
+                    />)
 
                 )}
 
@@ -136,8 +136,8 @@ export default async function Page(
 
 
 			</PageContent>
-		</div>
-	); 
+        </div>
+    ); 
 }
 
 

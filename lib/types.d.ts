@@ -117,19 +117,6 @@ interface MediaDetails {
     sizes: Record<string, MediaSize>;
 }
   
-export interface FeaturedMedia extends WPEntity {
-    title: RenderedTitle;
-    author: number;
-    caption: {
-        rendered: string;
-    };
-    alt_text: string;
-    media_type: string;
-    mime_type: string;
-    media_details: MediaDetails;
-    source_url: string;
-}
-  
 // Content types
 export type Post = {
 	id: number;

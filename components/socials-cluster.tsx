@@ -29,7 +29,7 @@ export const SocialCluster = () => {
                                 hover:text-socials-text-hover 
                             "
                         >
-                            <Link href={i?.link}>
+                            <Link href={i?.link} legacyBehavior>
                                 {i?.title === "Instagram" && <Instagram width={25} height={25} />}
                                 {i?.title === "Facebook" && <Facebook width={25} height={25} />}
                                 {i?.title === "Youtube" && <Youtube width={25} height={25} />}

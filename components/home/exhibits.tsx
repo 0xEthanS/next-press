@@ -85,9 +85,9 @@ const exhibitData = [
 
 
 function StaticBlogCard({ data }: { data: any }) {
-	return(
-		<div className={cn(`rounded-lg flex justify-between flex-col not-prose gap-8`, `hover:bg-accent/75 transition-all`)}>
-			<div className="flex flex-col gap-5 shrink-0">
+	return (
+        <div className={cn(`rounded-lg flex justify-between flex-col not-prose gap-8`, `hover:bg-accent/75 transition-all`)}>
+            <div className="flex flex-col gap-5 shrink-0">
 				<div className='group relative overflow-hidden pb-[100%] rounded-lg'>
 					<Image 
 						src={data.image.src} 
@@ -97,16 +97,18 @@ function StaticBlogCard({ data }: { data: any }) {
 						className="rounded-lg absolute size-full object-cover transition-all duration-300 group-focus-within:scale-105 group-focus-within:blur-xs group-hover:scale-105 group-hover:blur-xs"
 					/>
 					<div className='absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-focus-within:opacity-100 group-hover:opacity-100'>
-						<Link href={`${data.link}`} className='group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 border h-14 gap-4 px-6 py-2.5 group 
-								border-home-background 
-								bg-home-background 
-								text-home-text 
-								hover:border-[#E4E3D4] 
-								hover:bg-[#E4E3D4] 
-								active:border-[#E4E3D4] 
-								active:bg-[#E4E3D4] 
-							'
-						>
+						<Link
+                            href={`${data.link}`}
+                            className='group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 border h-14 gap-4 px-6 py-2.5 group 
+                                    border-home-background 
+                                    bg-home-background 
+                                    text-home-text 
+                                    hover:border-[#E4E3D4] 
+                                    hover:bg-[#E4E3D4] 
+                                    active:border-[#E4E3D4] 
+                                    active:bg-[#E4E3D4] 
+                                '
+                            legacyBehavior>
 							View Article
 							<ArrowRightIcon width={25} height={25} />
 						</Link>
@@ -129,7 +131,7 @@ function StaticBlogCard({ data }: { data: any }) {
 					</p>
 				</div>
 				<div className="tracking-[0.01em] text-base font-medium pb-1 line-clamp-2 leading-snug!">
-					<Link href={`${data.link}`}>
+					<Link href={`${data.link}`} legacyBehavior>
 						{data.header}
 					</Link>
 				</div>
@@ -137,13 +139,13 @@ function StaticBlogCard({ data }: { data: any }) {
 						!text-home-text
 					"
 				>
-					<Link href={`${data.link}`}>
+					<Link href={`${data.link}`} legacyBehavior>
 						{data.paragraph}
 					</Link>
 				</div>
 			</div>
-		</div>
-	);
+        </div>
+    );
 }
 
 

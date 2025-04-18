@@ -20,11 +20,11 @@ export default async function Page() {
 	const authors = await getAllAuthors();
 
 	return (
-		<div className="
+        <div className="
 				bg-articles-background
 			"
 		>
-			<div className="mx-auto w-full max-w-(--breakpoint-xl) px-5 sm:px-10 py-[120px] sm:py-28 ">
+            <div className="mx-auto w-full max-w-(--breakpoint-xl) px-5 sm:px-10 py-[120px] sm:py-28 ">
 				<div className="grid gap-y-14 lg:grid-cols-[21rem_1fr] lg:items-start lg:gap-x-24">
 					<div className="">
 						<div className="flex flex-col gap-3">
@@ -51,10 +51,10 @@ export default async function Page() {
 								</Link>
 
 								{authors.map((i: any, index) => (
-									<Link 
-										key={i.id} 
-										href={`/posts/?tag=${i.id}`} 
-										className={clsx(`flex h-8 w-fit shrink-0 items-center gap-x-4 rounded-xl border px-2.5 duration-150 
+									<Link
+                                        key={i.id}
+                                        href={`/posts/?tag=${i.id}`}
+                                        className={clsx(`flex h-8 w-fit shrink-0 items-center gap-x-4 rounded-xl border px-2.5 duration-150 
 											border-articles-border
 										`,
 										{
@@ -64,7 +64,7 @@ export default async function Page() {
 										}
 									)
 								}
-									>
+                                        legacyBehavior>
 										{i.name}
 									</Link>
 								))}
@@ -75,8 +75,8 @@ export default async function Page() {
 					</div>
 				</div>
 			</div>
-		</div>
-	);
+        </div>
+    );
 }
 
 

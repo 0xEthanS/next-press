@@ -31,8 +31,8 @@ const navMenu = config.navMenu
 
 export function NavigationMenuDemo({ path, transparent}: { path: string; transparent: boolean;}) {
 	return (
-		<div>
-			<NavigationMenu className="hidden text-lg font-medium md:text-sm gap-6 md:gap-5 lg:gap-6 flex-col md:flex md:flex-row md:items-center 
+        <div>
+            <NavigationMenu className="hidden text-lg font-medium md:text-sm gap-6 md:gap-5 lg:gap-6 flex-col md:flex md:flex-row md:items-center 
 					text-navbar-text 
 				"
 			>
@@ -89,15 +89,7 @@ export function NavigationMenuDemo({ path, transparent}: { path: string; transpa
                     })}
 				</NavigationMenuList>
 			</NavigationMenu>
-
-
-
-
-
-
-
-
-			<Sheet>
+            <Sheet>
 				<SheetTrigger asChild className="">
 					<Button
 						variant="outline"
@@ -135,7 +127,7 @@ export function NavigationMenuDemo({ path, transparent}: { path: string; transpa
                                         key={item.title}
                                         href={item.link}
                                         className="text-muted-foreground hover:text-foreground"
-                                    >
+                                        legacyBehavior>
                                         {item.title}
                                     </Link>
                                 );
@@ -145,12 +137,8 @@ export function NavigationMenuDemo({ path, transparent}: { path: string; transpa
 					</nav>
 				</SheetContent>
 			</Sheet>
-
-
-
-
-		</div>
-	)
+        </div>
+    );
 }
 
 

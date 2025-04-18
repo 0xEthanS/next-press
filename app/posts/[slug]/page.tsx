@@ -113,10 +113,8 @@ export default async function Page(
 
 
 	return (
-		<div>
-
-
-			<div className="
+        <div>
+            <div className="
 					bg-article-background
 				"
 			>
@@ -144,11 +142,11 @@ export default async function Page(
 									'
 								>
 									<Link
-										href={`/posts/?category=${categoryMain.id}`}
-										className="tracking-[0.01em] font-mono text-sm uppercase leading-[1.1] font-medium
+                                        href={`/posts/?category=${categoryMain.id}`}
+                                        className="tracking-[0.01em] font-mono text-sm uppercase leading-[1.1] font-medium
 											text-article-text
 										"
-									>
+                                        legacyBehavior>
 										{categoryMain.name}
 									</Link>
 								</div>
@@ -185,11 +183,7 @@ export default async function Page(
 					</div>
 				</div>
 			</div>
-
-
-
-
-			<div className="
+            <div className="
 					bg-article-background
 				"
 			>
@@ -303,14 +297,7 @@ export default async function Page(
 					</div>
 				</div>
 			</div>
-
-
-
-
-
-
-
-			<div className='max-w-(--breakpoint-xl) xl:px-28'>
+            <div className='max-w-(--breakpoint-xl) xl:px-28'>
 				<ArticlePreview 
 					href='/posts'
 				>
@@ -333,16 +320,8 @@ export default async function Page(
 					)}
 				</ArticlePreview>
 			</div>
-
-
-
-
-
-
-
-
-		</div>
-	);
+        </div>
+    );
 }
 
 

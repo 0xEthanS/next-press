@@ -50,8 +50,8 @@ async function PostCard({ post }: { post: any }) {
 
 
 	return (
-		<div className="rounded-lg flex justify-between flex-col not-prose gap-8 hover:bg-accent/75 transition-all">
-			<div className="flex flex-col gap-5 shrink-0">
+        <div className="rounded-lg flex justify-between flex-col not-prose gap-8 hover:bg-accent/75 transition-all">
+            <div className="flex flex-col gap-5 shrink-0">
 
 
 				<div className='group relative overflow-hidden rounded-lg pb-[100%]'>
@@ -68,9 +68,9 @@ async function PostCard({ post }: { post: any }) {
 
 					<div className='absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-focus-within:opacity-100 group-hover:opacity-100'>
 
-						<Link 
-							href={linkHref} 
-							className='group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 border h-14 gap-4 px-6 py-2.5 group 
+						<Link
+                            href={linkHref}
+                            className='group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 border h-14 gap-4 px-6 py-2.5 group 
 								border-[#FBFAF4] 
 								bg-[#FBFAF4] 
 								text-[#091717] 
@@ -79,7 +79,7 @@ async function PostCard({ post }: { post: any }) {
 								active:border-[#E4E3D4] 
 								active:bg-[#E4E3D4] 
 							'
-						>
+                            legacyBehavior>
 
 							View Article
 
@@ -119,7 +119,7 @@ async function PostCard({ post }: { post: any }) {
 						text-articles-text
 					"
 				>
-					<Link href={linkHref}>
+					<Link href={linkHref} legacyBehavior>
 						{postTitle}
 					</Link>
 				</div>
@@ -129,8 +129,8 @@ async function PostCard({ post }: { post: any }) {
 					linkHref={linkHref}
 				/>
 			</div>
-		</div>
-	);
+        </div>
+    );
 }
 
 

@@ -57,10 +57,8 @@ async function HeroMainPostCard({ post }: { post: Post }) {
 
 
 	return (
-		<div className="flex flex-col gap-5 sm:flex-row xl:items-end">
-
-
-			<div className="group flex w-full shrink-0 sm:w-1/2 xl:w-3/5">
+        <div className="flex flex-col gap-5 sm:flex-row xl:items-end">
+            <div className="group flex w-full shrink-0 sm:w-1/2 xl:w-3/5">
 				<div className="relative size-full overflow-hidden rounded-lg pb-[100%]">
 					<Image 
 						src={imageSrc} 
@@ -70,9 +68,9 @@ async function HeroMainPostCard({ post }: { post: Post }) {
 						className="rounded-lg absolute size-full object-cover transition-all duration-300 group-focus-within:scale-105 group-focus-within:blur-xs group-hover:scale-105 group-hover:blur-xs"
 					/>
 					<div className='absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-focus-within:opacity-100 group-hover:opacity-100'>
-						<Link 
-							href={`/posts/${post.slug}`} 
-							className='group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 border h-14 gap-4 px-6 py-2.5 group 
+						<Link
+                            href={`/posts/${post.slug}`}
+                            className='group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 border h-14 gap-4 px-6 py-2.5 group 
 								border-[#FBFAF4] 
 								bg-[#FBFAF4] 
 								text-[#091717] 
@@ -81,16 +79,14 @@ async function HeroMainPostCard({ post }: { post: Post }) {
 								active:border-[#E4E3D4] 
 								active:bg-[#E4E3D4]
 							'
-						>
+                            legacyBehavior>
 							View Article
 							<ArrowRightIcon width={25} height={25} />
 						</Link>
 					</div>
 				</div>
 			</div>
-
-
-			<div className="flex flex-1 flex-col justify-end gap-5">
+            <div className="flex flex-1 flex-col justify-end gap-5">
 				
 
 				<div className="w-full flex flex-wrap gap-2 items-start text-xs">
@@ -121,8 +117,10 @@ async function HeroMainPostCard({ post }: { post: Post }) {
 						text-articles-text
 					"
 				>
-					<Link href={`/posts/${post.slug}`} dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-					></Link>
+					<Link
+                        href={`/posts/${post.slug}`}
+                        dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+                        legacyBehavior></Link>
 				</h1>
 
 
@@ -134,10 +132,12 @@ async function HeroMainPostCard({ post }: { post: Post }) {
 				
 
 				<div>
-					<Link href={`/posts/${post.slug}`} className="group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 bg-transparent h-auto gap-2 p-0 hover:underline
-							text-articles-text 
-						"
-					>
+					<Link
+                        href={`/posts/${post.slug}`}
+                        className="group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 bg-transparent h-auto gap-2 p-0 hover:underline
+                                text-articles-text 
+                            "
+                        legacyBehavior>
 						Read More 
 						<ArrowRightIcon width={25} height={25} />
 					</Link>
@@ -145,10 +145,8 @@ async function HeroMainPostCard({ post }: { post: Post }) {
 
 
 			</div>
-
-
-		</div>
-	);
+        </div>
+    );
 }
 
 

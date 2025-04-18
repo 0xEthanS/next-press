@@ -158,19 +158,15 @@ export const ClientContentParser = (
 					}
 
 					return (
-						<Link 
-							href={finalHref} 
-							{...restAttribs}
-							className='underline'
-						>
-							{
+                        <Link href={finalHref} {...restAttribs} className='underline' legacyBehavior>
+                            {
 								domToReact(
 									domNode.children, 
 									options
 								)
 							}
-						</Link>
-					)
+                        </Link>
+                    );
 				}
 
 				// Handle tables
