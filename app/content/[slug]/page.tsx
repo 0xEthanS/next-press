@@ -2,29 +2,21 @@ import {
     getPageBySlug, 
     getPagesForStaticGeneration 
 } from "@/lib/wordpress";
-
 import { PageContent } from "@/components/pages/page-templates";
 import { processWPContent } from '@/components/wp/parsing/helpers/process-wp-content';
-
 import { ServerContentParser } from "@/components/wp/parsing/server-content-parser";
 import { ClientContentParser } from "@/components/wp/parsing/client-content-parser";
-
 import { decode } from 'he';
-
 import { config } from "../../../wp.config.mjs";
 
 
 
-
 type Params = Promise<{ slug: string }>
-
-// Add this export to enable caching
-// export const revalidate = 3600; // 7 days in seconds (60 * 60 * 24 * 7)
-
-
-
-
+export const dynamicParams = false;
+export const revalidate = 3600; // 1 hour in seconds (60 * 60)
 const slugsArray = config.static.content
+
+
 
 
 
@@ -49,6 +41,8 @@ export default async function Page(
     }
 ) {
 
+    console.log("------------------ Eyyyyyyyyyyy, the Page() function ran ----------------------")
+
 
 	const params = await props.params
     const slug = params.slug
@@ -59,7 +53,7 @@ export default async function Page(
 
 
 	const page = await getPageBySlug(slug);
-    
+
 	const title = page?.title?.rendered
 	const decodedTitle = decode(title)
 

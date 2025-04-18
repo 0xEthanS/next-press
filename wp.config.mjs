@@ -411,3 +411,20 @@ export const config = {
 
 
 
+
+
+
+
+const array = [
+	'about-the-museum',
+	'century-of-progress-exhibition',
+	'century-progress-exhibition',
+	'columbian-exhibition',
+	'columbian-exhibition-1893',
+	'current-upcoming-events',
+	'current-events',
+	'current-exhibits',
+	'event-announcements',
+	'food',
+	''
+]
