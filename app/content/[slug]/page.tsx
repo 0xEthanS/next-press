@@ -48,6 +48,7 @@ export default async function Page(
     const slug = params.slug
 
 	const isStaticRoute = slugsArray.includes(slug);
+    console.log("---------- isStaticRouteValue: ", isStaticRoute, " ----------")
 
 
 
@@ -108,17 +109,21 @@ export default async function Page(
 
 
 				{isStaticRoute ? (
+
                     // Use server-side parsing for static routes
                     <ServerContentParser 
                         content={processedRenderedContent}
                         className="space-y-6 sm:space-y-8"
                     />
+
                 ) : (
+
                     // Use client-side parsing for dynamic routes
                     <ClientContentParser 
                         content={processedRenderedContent}
                         className="space-y-6 sm:space-y-8"
                     />
+
                 )}
 
 
