@@ -26,10 +26,9 @@ import { SocialCluster } from "@/components/socials-cluster";
 
 const emailSlogan = config.footerData.emailSlogan
 
-
-
-
 type SearchParams = Promise<{ [key: string]: string | undefined }>
+
+
 
 
 
@@ -52,23 +51,15 @@ export default async function Page(
 
 
 	const posts = await getAllPosts({ author, tag, category });
+	const authors = await getAllAuthors();
+	const tags = await getAllTags();
+	const categories = await getAllCategories();
 
 
 
 	
 	const heroMainPost = posts[0]
 	const heroSubPosts = posts.slice(1,4)
-
-
-
-
-
-
-
-
-	const authors = await getAllAuthors();
-	const tags = await getAllTags();
-	const categories = await getAllCategories();
 
 
 
