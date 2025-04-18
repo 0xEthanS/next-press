@@ -57,6 +57,7 @@ const cleanedUrl = extractRootDomain(baseUrl)
 
 
 const nextConfig = {
+    output: 'export',
     images: {
 		remotePatterns: [
 
@@ -162,6 +163,7 @@ const nextConfig = {
             }
 		],
 	},
+    trailingSlash: true,
 };
 
 
