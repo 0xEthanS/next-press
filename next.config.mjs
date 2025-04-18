@@ -58,11 +58,6 @@ const cleanedUrl = extractRootDomain(baseUrl)
 
 const nextConfig = {
     output: 'standalone',
-    experimental: {
-        // This preserves static generation for specified paths
-        // while still allowing SSR for others
-        ppr: true
-    },
     images: {
 		remotePatterns: [
 

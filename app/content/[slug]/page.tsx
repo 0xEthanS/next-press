@@ -12,7 +12,13 @@ import { config } from "../../../wp.config.mjs";
 
 
 type Params = Promise<{ slug: string }>
-export const dynamicParams = false;
+
+
+
+export const dynamicParams = false; // Only pre-render pages defined by generateStaticParams
+
+
+
 export const revalidate = 3600; // 1 hour in seconds (60 * 60)
 const slugsArray = config.static.content
 
