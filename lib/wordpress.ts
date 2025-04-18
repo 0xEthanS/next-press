@@ -14,6 +14,8 @@ import type {
 
 const baseUrl = config.baseUrl
 
+const cacheTimes = 3600 // 60 * 60
+
 
 
 
@@ -41,6 +43,10 @@ export async function getAllPosts(filterParams?: {author?: string;tag?: string;c
 			categories: filterParams?.category 
 		}
 	);
+
+	console.log("---------- getAllPosts() Ran ----------")
+
+
 	const response = await fetch(url);
 	const posts: Post[] = await response.json();
 	return posts;
@@ -57,6 +63,10 @@ export async function getThreePosts(filterParams?: { author?: string; tag?: stri
 			per_page: 3 
 		}
 	);
+
+	console.log("---------- getThreePosts() Ran ----------")
+
+
 	const response = await fetch(url);
 	const posts: Post[] = await response.json();
     return posts
@@ -67,6 +77,10 @@ export async function getPostById(id: number): Promise<Post> {
 	const url = getUrl(
 		`/wp-json/wp/v2/posts/${id}`
 	);
+
+	console.log("---------- getPostsById() Ran ----------")
+
+
 	const response = await fetch(url);
 	const post: Post = await response.json();
 	return post;
@@ -78,6 +92,10 @@ export async function getPostBySlug(slug: string): Promise<Post> {
 		"/wp-json/wp/v2/posts", 
 		{ slug }
 	);
+
+	console.log("---------- getPostsBySlug() Ran ----------")
+
+
 	const response = await fetch(url);
 	const post: Post[] = await response.json();
 	return post[0];
@@ -88,6 +106,10 @@ export async function getAllCategories(): Promise<Category[]> {
 	const url = getUrl(
 		"/wp-json/wp/v2/categories"
 	);
+
+	console.log("---------- getAllCategories() Ran ----------")
+
+
 	const response = await fetch(url);
 	const categories: Category[] = await response.json();
 	return categories;
@@ -98,6 +120,10 @@ export async function getCategoryById(id: number): Promise<Category> {
 	const url = getUrl(
 		`/wp-json/wp/v2/categories/${id}`
 	);
+
+	console.log("---------- getCategoryById() Ran ----------")
+
+
 	const response = await fetch(url);
 	const category: Category = await response.json();
 	return category;
@@ -109,6 +135,10 @@ export async function getCategoryBySlug(slug: string): Promise<Category> {
 		"/wp-json/wp/v2/categories", 
 		{ slug }
 	);
+
+	console.log("---------- getCategoryBySlug() Ran ----------")
+
+
 	const response = await fetch(url);
 	const category: Category[] = await response.json();
 	return category[0];
@@ -120,6 +150,10 @@ export async function getPostsByCategory(categoryId: number): Promise<Post[]> {
 		"/wp-json/wp/v2/posts", 
 		{ categories:  categoryId }
 	);
+
+	console.log("---------- getPostsByCategoryBy() Ran ----------")
+
+	
 	const response = await fetch(url);
 	const posts: Post[] = await response.json();
 	return posts;
@@ -131,6 +165,10 @@ export async function getPostsByTag(tagId: number): Promise<Post[]> {
 		"/wp-json/wp/v2/posts", 
 		{ tags:  tagId }
 	);
+
+	console.log("---------- getPostsByTag() Ran ----------")
+
+
 	const response = await fetch(url);
 	const posts: Post[] = await response.json();
 	return posts;
@@ -142,6 +180,10 @@ export async function getTagsByPost(postId: number): Promise<Tag[]> {
 		"/wp-json/wp/v2/tags", 
 		{ post:  postId }
 	);
+
+	console.log("---------- getTagByPost() Ran ----------")
+
+
 	const response = await fetch(url);
 	const tags: Tag[] = await response.json();
 	return tags;
@@ -152,6 +194,10 @@ export async function getAllTags(): Promise<Tag[]> {
 	const url = getUrl(
 		"/wp-json/wp/v2/tags"
 	);
+
+	console.log("---------- getAllTags() Ran ----------")
+
+
 	const response = await fetch(url);
 	const tags: Tag[] = await response.json();
 	return tags;
@@ -162,6 +208,10 @@ export async function getTagById(id: number): Promise<Tag> {
 	const url = getUrl(
 		`/wp-json/wp/v2/tags/${id}`
 	);
+
+	console.log("---------- getTagsById() Ran ----------")
+
+
 	const response = await fetch(url);
 	const tag: Tag = await response.json();
 	return tag;
@@ -173,6 +223,10 @@ export async function getTagBySlug(slug: string): Promise<Tag> {
 		"/wp-json/wp/v2/tags", 
 		{ slug }
 	);
+
+	console.log("---------- getTagBySlug() Ran ----------")
+
+
 	const response = await fetch(url);
 	const tag: Tag[] = await response.json();
 	return tag[0];
@@ -183,6 +237,10 @@ export async function getAllAuthors(): Promise<Author[]> {
 	const url = getUrl(
 		"/wp-json/wp/v2/users"
 	);
+
+	console.log("---------- getAllAuthors() Ran ----------")
+
+
 	const response = await fetch(url);
 	const authors: Author[] = await response.json();
 	return authors;
@@ -193,6 +251,10 @@ export async function getAuthorById(id: number): Promise<Author> {
 	const url = getUrl(
 		`/wp-json/wp/v2/users/${id}`
 	);
+
+	console.log("---------- getAuthorById() Ran ----------")
+
+
 	const response = await fetch(url);
 	const author: Author = await response.json();
 	return author;
@@ -204,6 +266,10 @@ export async function getAuthorBySlug(slug: string): Promise<Author> {
 		"/wp-json/wp/v2/users", 
 		{ slug }
 	);
+
+	console.log("---------- getAuthorBySlug() Ran ----------")
+
+
 	const response = await fetch(url);
 	const author: Author[] = await response.json();
 	return author[0];
@@ -215,6 +281,10 @@ export async function getPostsByAuthor(authorId: number): Promise<Post[]> {
 		"/wp-json/wp/v2/posts", 
 		{ author: authorId }
 	);
+
+	console.log("---------- getPostsByAuthor() Ran ----------")
+
+
 	const response = await fetch(url);
 	const posts: Post[] = await response.json();
 	return posts;
@@ -227,6 +297,10 @@ export async function getPostsByAuthorSlug(authorSlug: string): Promise<Post[]> 
 		"/wp-json/wp/v2/posts", 
 		{ author: author.id }
 	);
+
+	console.log("---------- getPostsByAuthorSlug() Ran ----------")
+
+
 	const response = await fetch(url);
 	const posts: Post[] = await response.json();
 	return posts;
@@ -239,6 +313,10 @@ export async function getPostsByCategorySlug(categorySlug: string): Promise<Post
 		"/wp-json/wp/v2/posts", 
 		{ categories: category.id }
 	);
+
+	console.log("---------- getPostsByCategorySlug() Ran ----------")
+
+
 	const response = await fetch(url);
 	const posts: Post[] = await response.json();
 	return posts;
@@ -251,6 +329,10 @@ export async function getPostsByTagSlug(tagSlug: string): Promise<Post[]> {
 		"/wp-json/wp/v2/posts", 
 		{ tags: tag.id }
 	);
+
+	console.log("---------- getPostsByTagSlug() Ran ----------")
+
+
 	const response = await fetch(url);
 	const posts: Post[] = await response.json();
 	return posts;
@@ -267,6 +349,10 @@ export async function getAllPages(): Promise<Page[]> {
 	const url = getUrl(
 		"/wp-json/wp/v2/pages"
 	);
+
+	console.log("---------- getAllPages() Ran ----------")
+
+
 	const response = await fetch(url);
 	const pages: Page[] = await response.json();
 	return pages;
@@ -277,6 +363,10 @@ export async function getPageById(id: number): Promise<Page> {
 	const url = getUrl(
 		`/wp-json/wp/v2/pages/${id}`
 	);
+
+	console.log("---------- getPageById() Ran ----------")
+
+
 	const response = await fetch(url);
 	const page: Page = await response.json();
 	return page;
@@ -293,6 +383,10 @@ export async function getFeaturedMediaById(id: number): Promise<FeaturedMedia> {
 	const url = getUrl(
 		`/wp-json/wp/v2/media/${id}`
 	);
+
+	console.log("---------- getFeaturedMediaById() Ran ----------")
+
+
 	const response = await fetch(url);
 	const featuredMedia: FeaturedMedia = await response.json();
 	return featuredMedia;
