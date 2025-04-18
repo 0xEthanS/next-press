@@ -4,6 +4,8 @@ import {
 	getAllTags, 
 	getAllCategories 
 } from "@/lib/wordpress";
+
+
 import { 
 	Pagination, 
 	PaginationContent, 
@@ -27,6 +29,10 @@ import { SocialCluster } from "@/components/socials-cluster";
 const emailSlogan = config.footerData.emailSlogan
 
 type SearchParams = Promise<{ [key: string]: string | undefined }>
+
+
+
+export const revalidate = 3600;
 
 
 
@@ -57,7 +63,7 @@ export default async function Page(
 
 
 
-	
+
 	const heroMainPost = posts[0]
 	const heroSubPosts = posts.slice(1,4)
 
