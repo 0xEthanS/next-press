@@ -75,7 +75,7 @@ async function HeroSubPostCard(
                                 active:border-[#E4E3D4] 
                                 active:bg-[#E4E3D4]
                             '
-                            legacyBehavior>
+                        >
                             View Article
                             <ArrowRightIcon width={25} height={25} />
                         </Link>
@@ -114,7 +114,7 @@ async function HeroSubPostCard(
                     <Link
                         href={`/posts/${post.slug}`}
                         dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                        legacyBehavior></Link>
+                    ></Link>
                 </div>
 
                 <div>
@@ -122,14 +122,14 @@ async function HeroSubPostCard(
                         href={`/posts/${post.slug}`}
                         className="group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 bg-transparent  h-auto gap-2 p-0 hover:underline 
 
-                                text-articles-text
+                            text-articles-text
 
-                                hover:text-articles-text
+                            hover:text-articles-text
 
-                                border-articles-border
+                            border-articles-border
 
-                            "
-                        legacyBehavior>
+                        "
+                    >
                         Read More 
                         <ArrowRightIcon width={25} height={25} />
                     </Link>

@@ -146,7 +146,7 @@ export default async function Page(
                                         className="tracking-[0.01em] font-mono text-sm uppercase leading-[1.1] font-medium
 											text-article-text
 										"
-                                        legacyBehavior>
+									>
 										{categoryMain.name}
 									</Link>
 								</div>

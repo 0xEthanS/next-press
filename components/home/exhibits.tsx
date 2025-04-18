@@ -100,15 +100,15 @@ function StaticBlogCard({ data }: { data: any }) {
 						<Link
                             href={`${data.link}`}
                             className='group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 border h-14 gap-4 px-6 py-2.5 group 
-                                    border-home-background 
-                                    bg-home-background 
-                                    text-home-text 
-                                    hover:border-[#E4E3D4] 
-                                    hover:bg-[#E4E3D4] 
-                                    active:border-[#E4E3D4] 
-                                    active:bg-[#E4E3D4] 
-                                '
-                            legacyBehavior>
+								border-home-background 
+								bg-home-background 
+								text-home-text 
+								hover:border-[#E4E3D4] 
+								hover:bg-[#E4E3D4] 
+								active:border-[#E4E3D4] 
+								active:bg-[#E4E3D4] 
+							'
+						>
 							View Article
 							<ArrowRightIcon width={25} height={25} />
 						</Link>
@@ -131,7 +131,7 @@ function StaticBlogCard({ data }: { data: any }) {
 					</p>
 				</div>
 				<div className="tracking-[0.01em] text-base font-medium pb-1 line-clamp-2 leading-snug!">
-					<Link href={`${data.link}`} legacyBehavior>
+					<Link href={`${data.link}`}>
 						{data.header}
 					</Link>
 				</div>
@@ -139,7 +139,7 @@ function StaticBlogCard({ data }: { data: any }) {
 						!text-home-text
 					"
 				>
-					<Link href={`${data.link}`} legacyBehavior>
+					<Link href={`${data.link}`}>
 						{data.paragraph}
 					</Link>
 				</div>

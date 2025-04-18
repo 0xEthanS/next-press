@@ -206,7 +206,6 @@ export const ServerContentParser = (
 						href={finalHref} 
 						{...restAttribs} 
 						className='underline' 
-						legacyBehavior
 					>
                         {
 							domToReact(

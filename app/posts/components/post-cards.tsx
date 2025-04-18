@@ -74,15 +74,15 @@ async function PostCard({ post }: { post: Post }) {
 						<Link
                             href={`/posts/${post.slug}`}
                             className='group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 border h-14 gap-4 px-6 py-2.5 group 
-                                    border-[#FBFAF4] 
-                                    bg-[#FBFAF4] 
-                                    text-[#091717] 
-                                    hover:border-[#E4E3D4] 
-                                    hover:bg-[#E4E3D4] 
-                                    active:border-[#E4E3D4] 
-                                    active:bg-[#E4E3D4] 
-                                '
-                            legacyBehavior>
+								border-[#FBFAF4] 
+								bg-[#FBFAF4] 
+								text-[#091717] 
+								hover:border-[#E4E3D4] 
+								hover:bg-[#E4E3D4] 
+								active:border-[#E4E3D4] 
+								active:bg-[#E4E3D4] 
+							'
+						>
 
 							View Article
 
@@ -127,7 +127,7 @@ async function PostCard({ post }: { post: Post }) {
 					<Link
                         href={`/posts/${post.slug}`}
                         dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                        legacyBehavior></Link>
+					></Link>
 
 				</div>
 

@@ -60,24 +60,21 @@ export function NavigationMenuDemo({ path, transparent}: { path: string; transpa
                                 <NavigationMenuItem 
 									key={item.title}
 								>
-                                    <Link 
-										href={item.link} 
-										legacyBehavior 
-										passHref
-									>
-                                        <NavigationMenuLink
-                                            className={clsx(
+									<NavigationMenuLink asChild>
+										<Link 
+											href={item.link}
+											className={clsx(
 												"px-4 py-2 ",
 												{
-                                                	"text-[#091717]": path !== "/" && transparent,
-                                                	"text-navbar-text": path !== "/" && !transparent,
-                                                	"text-slate-50": path === "/"
-        	                                	}
+													"text-[#091717]": path !== "/" && transparent,
+													"text-navbar-text": path !== "/" && !transparent,
+													"text-slate-50": path === "/"
+												}
 											)}
-                                        >
-                                            {item.title}
-                                        </NavigationMenuLink>
-                                    </Link>
+										>
+											{item.title}
+										</Link>
+									</NavigationMenuLink>
                                 </NavigationMenuItem>
 
 
@@ -127,7 +124,7 @@ export function NavigationMenuDemo({ path, transparent}: { path: string; transpa
                                         key={item.title}
                                         href={item.link}
                                         className="text-muted-foreground hover:text-foreground"
-                                        legacyBehavior>
+									>
                                         {item.title}
                                     </Link>
                                 );

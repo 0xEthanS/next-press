@@ -62,7 +62,7 @@ async function ArticleEventPreviewCard({ post }: { post: any }) {
                                 active:border-[#E4E3D4] 
                                 active:bg-[#E4E3D4] 
                             '
-                        legacyBehavior>
+					>
 						View Article
 						<ArrowRightIcon width={25} height={25} />
 					</Link>
@@ -93,7 +93,7 @@ async function ArticleEventPreviewCard({ post }: { post: any }) {
 					text-articles-text
 				'
 			>
-				<Link href={linkHref} legacyBehavior>
+				<Link href={linkHref}>
 					{postTitle}
 				</Link>
 			</p>

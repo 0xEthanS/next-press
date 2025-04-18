@@ -158,7 +158,7 @@ export const ClientContentParser = (
 					}
 
 					return (
-                        <Link href={finalHref} {...restAttribs} className='underline' legacyBehavior>
+                        <Link href={finalHref} {...restAttribs} className='underline'>
                             {
 								domToReact(
 									domNode.children, 

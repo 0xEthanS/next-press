@@ -68,7 +68,7 @@ async function HeroSubPostCard(
                                 active:border-[#E4E3D4] 
                                 active:bg-[#E4E3D4] 
                             '
-                            legacyBehavior>
+                        >
                             View Article
                             <ArrowRightIcon width={25} height={25} />
                         </Link>
@@ -120,7 +120,7 @@ async function HeroSubPostCard(
                         text-articles-text
                     "
                 >
-                    <Link href={linkHref} legacyBehavior>
+                    <Link href={linkHref}>
                         {postTitle}
                     </Link>
                 </div>
@@ -137,7 +137,7 @@ async function HeroSubPostCard(
                                 border-articles-border
 
                             "
-                        legacyBehavior>
+                    >
                         Read More 
                         <ArrowRightIcon width={25} height={25} />
                     </Link>

@@ -18,7 +18,7 @@ function PostExcerpt({
 	const textString = parseAndTruncate({ htmlContent, sliceSize })
 
     return (
-        <Link href={linkHref} legacyBehavior>
+        <Link href={linkHref}>
             {textString}
         </Link>
     );

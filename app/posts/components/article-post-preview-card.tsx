@@ -65,7 +65,7 @@ async function ArticlePostPreviewCard({ post }: { post: Post }) {
                                 active:border-[#E4E3D4] 
                                 active:bg-[#E4E3D4] 
                             '
-                        legacyBehavior>
+					>
 						View Article
 						<ArrowRightIcon width={25} height={25} />
 					</Link>
@@ -100,7 +100,7 @@ async function ArticlePostPreviewCard({ post }: { post: Post }) {
 				<Link
                     href={`/posts/${post.slug}`}
                     dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                    legacyBehavior></Link>
+				></Link>
 			</p>
             <PostExcerpt 
 				excerpt={excerpt} 

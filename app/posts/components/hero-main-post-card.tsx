@@ -79,7 +79,7 @@ async function HeroMainPostCard({ post }: { post: Post }) {
 								active:border-[#E4E3D4] 
 								active:bg-[#E4E3D4]
 							'
-                            legacyBehavior>
+						>
 							View Article
 							<ArrowRightIcon width={25} height={25} />
 						</Link>
@@ -120,7 +120,7 @@ async function HeroMainPostCard({ post }: { post: Post }) {
 					<Link
                         href={`/posts/${post.slug}`}
                         dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                        legacyBehavior></Link>
+					></Link>
 				</h1>
 
 
@@ -135,9 +135,9 @@ async function HeroMainPostCard({ post }: { post: Post }) {
 					<Link
                         href={`/posts/${post.slug}`}
                         className="group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 bg-transparent h-auto gap-2 p-0 hover:underline
-                                text-articles-text 
-                            "
-                        legacyBehavior>
+                            text-articles-text 
+                        "
+					>
 						Read More 
 						<ArrowRightIcon width={25} height={25} />
 					</Link>
