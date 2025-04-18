@@ -71,6 +71,7 @@ export function NavigationMenuDemo({ path, transparent}: { path: string; transpa
 													"text-slate-50": path === "/"
 												}
 											)}
+											prefetch={item.preFetch}
 										>
 											{item.title}
 										</Link>
@@ -103,12 +104,20 @@ export function NavigationMenuDemo({ path, transparent}: { path: string; transpa
 				</SheetTrigger>
 				<SheetContent side="left">
 					<nav className="grid gap-6 text-lg font-medium">
+
+
+
+
 						<Link
 							href="/"
 							className="text-muted-foreground hover:text-foreground"
 						>
 							Home
 						</Link>
+
+
+
+
 						{navMenu.linkTree.map((item) => {
                             if (item.type === "headlessTree" && item.links) {
                                 return (
@@ -120,13 +129,22 @@ export function NavigationMenuDemo({ path, transparent}: { path: string; transpa
                                 );
                             } else if (item.type === "singleNode" && item.link) {
                                 return (
+
+
+
+
                                     <Link
                                         key={item.title}
                                         href={item.link}
                                         className="text-muted-foreground hover:text-foreground"
+										prefetch={item.preFetch}
 									>
                                         {item.title}
                                     </Link>
+
+
+
+
                                 );
                             }
                             return null;

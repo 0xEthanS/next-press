@@ -141,19 +141,22 @@ export const config = {
 						key: 1, 
 						title: 'Become a Member', 
 						description: '',
-						href: '/content/become-a-member'
+						href: '/content/become-a-member',
+						preFetch: null
 					},	
 					{ 
 						key: 2, 
 						title: 'Donate', 
 						description: '',
-						href: '/content/donate'
+						href: '/content/donate',
+						preFetch: null
 					},	
 					{ 
 						key: 3, 
 						title: 'Volunteer', 
 						description: '',
-						href: '/content/volunteer'
+						href: '/content/volunteer',
+						preFetch: null
 					},	
 
 
@@ -162,55 +165,64 @@ export const config = {
 						key: 4, 
 						title: 'Jean T Lee Eulogy Delivered By Medora Lee', 
 						description: '',
-						href: '/content/jean-t-lee-eulogy-delivered-by-medora-lee'
+						href: '/content/jean-t-lee-eulogy-delivered-by-medora-lee',
+						preFetch: null
 					},
 					{ 
 						key: 5, 
 						title: 'Raymond B Lee Donation In Memory Of Jean T Lee', 
 						description: '',
-						href: '/content/raymond-b-lee-donation-in-memory-of-jean-t-lee'
+						href: '/content/raymond-b-lee-donation-in-memory-of-jean-t-lee',
+						preFetch: null
 					},
 					{ 
 						key: 6, 
 						title: 'History And Mission', 
 						description: '',
-						href: '/content/history-and-mission'
+						href: '/content/history-and-mission',
+						preFetch: null
 					},
 					{ 
 						key: 7, 
 						title: 'Board Of Directors', 
 						description: '',
-						href: '/content/board-of-directors'
+						href: '/content/board-of-directors',
+						preFetch: null
 					},
 					{ 
 						key: 8, 
 						title: 'Advisory Council', 
 						description: '',
-						href: '/content/advisory-council'
+						href: '/content/advisory-council',
+						preFetch: null
 					},
 					{ 
 						key: 9, 
 						title: 'Associate Board', 
 						description: '',
-						href: '/content/associate-board'
+						href: '/content/associate-board',
+						preFetch: null
 					},
 					{ 
 						key: 10, 
 						title: 'Staff', 
 						description: '',
-						href: '/content/staff'
+						href: '/content/staff',
+						preFetch: null
 					},	
 					{ 
 						key: 11, 
 						title: 'In Memoriam', 
 						description: '',
-						href: '/content/in-memoriam'
+						href: '/content/in-memoriam',
+						preFetch: null
 					},
 					{ 
 						key: 12, 
 						title: 'Obituary Of Mrs Jean-lee', 
 						description: '',
-						href: '/content/obituary-of-mrs-jean-lee'
+						href: '/content/obituary-of-mrs-jean-lee',
+						preFetch: null
 					},
 				]
 			},
@@ -222,25 +234,29 @@ export const config = {
 						key: 1, 
 						title: 'Information For Visitors', 
 						description: '',
-						href: '/content/information-for-visitors'
+						href: '/content/information-for-visitors',
+						preFetch: null
 					},
 					{ 
 						key: 2, 
 						title: 'Group Visit', 
 						description: '',
-						href: '/content/group-visit'
+						href: '/content/group-visit',
+						preFetch: null
 					},
 					{ 
 						key: 3, 
 						title: 'Contact Us', 
 						description: '',
-						href: '/content/contact-us'
+						href: '/content/contact-us',
+						preFetch: null
 					},
 					{ 
 						key: 4, 
 						title: '4th Floor Room Rental', 
 						description: '',
-						href: '/content/4th-floor-room-rental'
+						href: '/content/4th-floor-room-rental',
+						preFetch: null
 					},
 				]
 			},
@@ -252,31 +268,36 @@ export const config = {
 						key: 1, 
 						title: 'Events', 
 						description: '',
-						href: '/posts/'
+						href: '/posts/',
+						preFetch: null
 					},
 					{ 
 						key: 2, 
 						title: 'Past Events', 
 						description: '',
-						href: '/posts?category=611846666'
+						href: '/posts?category=611846666',
+						preFetch: null
 					},
 					{ 
 						key: 3, 
 						title: 'Past Exhibits', 
 						description: '',
-						href: '/posts?category=620820045'
+						href: '/posts?category=620820045',
+						preFetch: null
 					},
 					{ 
 						key: 4, 
 						title: 'Current Exhibits', 
 						description: '',
-						href: '/content/current-exhibits'
+						href: '/content/current-exhibits',
+						preFetch: null
 					},
 					{ 
 						key: 5, 
 						title: 'Video Archive', 
 						description: '',
-						href: '/content/video-archive'
+						href: '/content/video-archive',
+						preFetch: null
 					},
 				]
 			},
@@ -288,19 +309,22 @@ export const config = {
 						key: 1, 
 						title: 'Lunar New Year History and Traditions Explained', 
 						description: '',
-						href: '/content/lunar-new-year-history-and-traditions-explained'
+						href: '/content/lunar-new-year-history-and-traditions-explained',
+						preFetch: null
 					},
 					{ 
 						key: 2, 
 						title: 'Education', 
 						description: '',
-						href: '/content/education'
+						href: '/content/education',
+						preFetch: null
 					},
 					{ 
 						key: 3, 
 						title: 'Burnham Wildlife Corridor', 
 						description: '',
-						href: '/content/burnham-wildlife-corridor'
+						href: '/content/burnham-wildlife-corridor',
+						preFetch: null
 					},
 				]
 			},
@@ -312,62 +336,72 @@ export const config = {
 						key: 1, 
 						title: 'Teaach Act', 
 						description: '',
-						href: '/content/teaach-act'
+						href: '/content/teaach-act',
+						preFetch: null
 					},
 					{ 
 						key: 2, 
 						title: 'Celebrating Asian American and Pacific Islander Heritage Month', 
 						description: '',
-						href: '/posts/celebrating-asian-american-and-pacific-islander-heritage-month'
+						href: '/posts/celebrating-asian-american-and-pacific-islander-heritage-month',
+						preFetch: null
 					},
 					{ 
 						key: 3, 
 						title: 'Moca Book Recommendations', 
 						description: '',
-						href: '/posts/moca-book-recommendations'
+						href: '/posts/moca-book-recommendations',
+						preFetch: null
 					},
 					{ 
 						key: 4, 
 						title: 'Chinese American Asian American History Videos On PBS', 
 						description: '',
-						href: '/content/chinese-american-asian-american-history-videos-on-pbs'
+						href: '/content/chinese-american-asian-american-history-videos-on-pbs',
+						preFetch: null
 					},
 					{ 
 						key: 5, 
 						title: 'The Teaach Act is Passed', 
 						description: '',
-						href: '/content/the-teaach-act-is-passed'
+						href: '/content/the-teaach-act-is-passed',
+						preFetch: null
 					},
 					{ 
 						key: 6, 
 						title: 'Uncovering Asian American Stories in Evanston and The Midwest', 
 						description: '',
-						href: '/content/uncovering-asian-american-stories-in-evanston-and-the-midwest'
+						href: '/content/uncovering-asian-american-stories-in-evanston-and-the-midwest',
+						preFetch: null
 					},
 					{ 
 						key: 7, 
 						title: 'Asian Women Suffragists', 
 						description: '',
-						href: '/posts/asian-women-suffragists-2'
+						href: '/posts/asian-women-suffragists-2',
+						preFetch: null
 					},
 					{ 
 						key: 8, 
 						title: 'Shows on Asian Americans on PBS TV Links to Watch Free', 
 						description: '',
-						href: '/posts/shows-on-asian-americans-on-pbs-tv-links-to-watch-free'
+						href: '/posts/shows-on-asian-americans-on-pbs-tv-links-to-watch-free',
+						preFetch: null
 					},
 					{ 
 						key: 9, 
 						title: 'Exhibitions and Teaching From China Institute in America', 
 						description: '',
-						href: '/content/exhibitions-and-teaching-from-china-institute-in-america'
+						href: '/content/exhibitions-and-teaching-from-china-institute-in-america',
+						preFetch: null
 					},
 				]
 			},
 			{
 				type: "singleNode",
 				title: "Museum in the News",
-				link: "/posts/"
+				link: "/posts/",
+				preFetch: false
 			},
 		]
 	},
