@@ -1,7 +1,7 @@
 import * as cheerio from 'cheerio';
 import { config } from "../../wp.config.mjs";
 import { Post } from "@/lib/types";
-import { getFeaturedMediaById } from "@/lib/wordpress";
+//import { getFeaturedMediaById } from "@/lib/wordpress";
 
 
 
@@ -14,7 +14,30 @@ const fallback = config.wp.thumbnailFallback || '/images/default-post-image.jpg'
 const getPostImageUrl = async (post: Post): Promise<string> => {
 
     
+    // Updated Case 1
+    if (post.featured_media && post.featured_media !== 0) {
+
+        try {
+
+            const media = post?._embedded?.['wp:featuredmedia']?.[0]?.source_url || null;
+
+            if (media) {
+                return media;
+            }
+
+        } catch (error) {
+
+            console.error('Error Accessing:', error);
+
+        }
+    }
+
+
+
+
+
     // Case 1: Featured media is available
+    /*
     if (post.featured_media && post.featured_media !== 0) {
         try {
             const media = await getFeaturedMediaById(post.featured_media);
@@ -22,10 +45,16 @@ const getPostImageUrl = async (post: Post): Promise<string> => {
                 return media.source_url;
             }
         } catch (error) {
-            console.error('Error fetching featured media:', error);
+            console.error('Error Accessing:', error);
         }
     }
-  
+    */
+
+
+
+
+
+
 
     // Case 2: Image embedded in post content HTML
     if (post.content && post.content.rendered) {

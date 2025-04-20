@@ -2,15 +2,8 @@ import { ArrowRightIcon } from '@/components/icons'
 import Image from 'next/image';
 import Link from "next/link";
 import { Post } from "@/lib/types";
-import {
-	getFeaturedMediaById,
-	getAuthorById,
-	getCategoryById,
-} from "@/lib/wordpress";
-import { PostExcerpt } from "@/components/wp/post-excerpt"
-
-
-
+//import { getFeaturedMediaById, getAuthorById, getCategoryById, } from "@/lib/wordpress";
+//import { PostExcerpt } from "@/components/wp/post-excerpt"
 import { getPostImageUrl } from '@/components/wp/posts-thumbnail-image-handler';
 import { config } from "../../../wp.config.mjs"
 
@@ -29,14 +22,24 @@ async function HeroSubPostCard(
 	}
 ) {
 
+
     const imageUrl = await getPostImageUrl(post);
-	const imageSrc = imageUrl || fallbackImage
+    const categoryName = post?._embedded?.['wp:term']?.[0]?.[0]?.name || null
 
-	
-	const media = await getFeaturedMediaById(post.featured_media);
 
-	const author = await getAuthorById(post.author);
+    //const category = await getCategoryById(post.categories[0]);
+    //const media = await getFeaturedMediaById(post.featured_media);
+	//const author = await getAuthorById(post.author);
+    //const author = post?._embedded?.['author']?.[0]?.name || null;
 
+
+
+
+
+
+
+
+    const imageSrc = imageUrl || fallbackImage
 	const date = new Date(post.date).toLocaleDateString(
 		"en-US", {
 			month: "long",
@@ -44,9 +47,6 @@ async function HeroSubPostCard(
 			year: "numeric",
 		}
 	);
-	
-	const category = await getCategoryById(post.categories[0]);
-
     const linkHref = `/posts/${post.slug}` 
 
 
@@ -95,7 +95,7 @@ async function HeroSubPostCard(
                                 text-articles-text
                             "
                         >
-							{category.name}
+							{categoryName}
 						</span>
 					</div>
 

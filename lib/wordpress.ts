@@ -30,13 +30,13 @@ function getUrl(path: string, query?: Record<string, any>) {
 
 
 
-
+// 23 
 
 
 
 export async function getAllPosts(filterParams?: {author?: string;tag?: string;category?: string;}): Promise<Post[]> {  
 	const url = getUrl(
-		"/wp-json/wp/v2/posts", 
+		"/wp-json/wp/v2/posts?_embed", 
 		{ 
 			author: filterParams?.author, 
 			tags: filterParams?.tag, 
@@ -60,7 +60,8 @@ export async function getThreePosts(filterParams?: { author?: string; tag?: stri
 			author: filterParams?.author, 
 			tags: filterParams?.tag, 
 			categories: filterParams?.category, 
-			per_page: 3 
+			per_page: 3,
+			_embed: true 
 		}
 	);
 
@@ -90,7 +91,7 @@ export async function getPostById(id: number): Promise<Post> {
 export async function getPostBySlug(slug: string): Promise<Post> {
 	const url = getUrl(
 		"/wp-json/wp/v2/posts", 
-		{ slug }
+		{ slug, _embed: true }
 	);
 
 	console.log("---------- getPostsBySlug() Ran ----------")

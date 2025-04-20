@@ -3,16 +3,8 @@ import { cn } from "@/lib/utils";
 import Image from 'next/image';
 import Link from "next/link";
 import { Post } from "@/lib/types";
-import {
-	getFeaturedMediaById,
-	getAuthorById,
-	getCategoryById,
-} from "@/lib/wordpress";
+//import { getFeaturedMediaById, getAuthorById, getCategoryById, } from "@/lib/wordpress";
 import { PostExcerpt } from "@/components/wp/post-excerpt"
-
-
-
-
 import { getPostImageUrl } from '@/components/wp/posts-thumbnail-image-handler';
 import { config } from "../../../wp.config.mjs"
 
@@ -23,16 +15,45 @@ const fallbackVenue = config.wp.fallbackVenue
 
 
 
-async function PostCard({ post }: { post: Post }) {
+async function PostCard(
+	{ 
+		post 
+	}: { 
+		post: Post 
+	}
+) {
 
 
 	const imageUrl = await getPostImageUrl(post);
-	const imageSrc = imageUrl || fallbackImage
+	const categoryName = post?._embedded?.['wp:term']?.[0]?.[0]?.name || null
+
+
 
 	
-	const media = await getFeaturedMediaById(post.featured_media);
 
-	const author = await getAuthorById(post.author);
+	
+	//console.log("Category: ", category)
+
+
+	//const category = await getCategoryById(post.categories[0]);
+	//const media = await getFeaturedMediaById(post.featured_media);
+	//const author = await getAuthorById(post.author);
+	//const author = post?._embedded?.['author']?.[0]?.name || null;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	const date = new Date(post.date).toLocaleDateString(
 		"en-US", {
@@ -41,13 +62,9 @@ async function PostCard({ post }: { post: Post }) {
 			year: "numeric",
 		}
 	);
-	
-
-	const category = await getCategoryById(post.categories[0]);
-
-
-	const linkHref = `/posts/${post.slug}`
-	const excerpt = post?.excerpt.rendered 
+	const linkHref = `/posts/${post.slug}`;
+	const excerpt = post?.excerpt.rendered;
+	const imageSrc = imageUrl || fallbackImage;
 
 
 
@@ -106,7 +123,7 @@ async function PostCard({ post }: { post: Post }) {
 								text-articles-text
 							"
 						>
-							{category.name}
+							{categoryName}
 						</span>
 					</div>
 

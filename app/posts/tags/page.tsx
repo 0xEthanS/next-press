@@ -17,7 +17,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 
 export default async function Page() {
+
+	
 	const tags = await getAllTags();
+
+
+
 
 	return (
         <div className="

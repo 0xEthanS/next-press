@@ -14,12 +14,16 @@ import {
 	PaginationNext, 
 	PaginationPrevious 
 } from "@/components/ui/pagination";
+
 import { PostCard } from "@/app/posts/components/post-cards";
+
 import { Filter } from "@/app/posts/components/filter";
 import { EmailForm0 } from "@/components/email-form";
 import clsx from "clsx";
+
 import { HeroSubPostCard } from "@/app/posts/components/hero-sub-post-cards"
 import { HeroMainPostCard } from "@/app/posts/components/hero-main-post-card"
+
 import { config } from "../../wp.config.mjs"
 import { SocialCluster } from "@/components/socials-cluster";
 
@@ -60,26 +64,23 @@ export default async function Page(
 	const authors = await getAllAuthors();
 	const tags = await getAllTags();
 	const categories = await getAllCategories();
+
 	console.log("---------- @/app/post functions ran ----------")
 
 
 
 
+
+
+	
+
 	const heroMainPost = posts[0]
 	const heroSubPosts = posts.slice(1,4)
-
-
-
-
-
-
 
 
 	const page = pageParam ? parseInt(pageParam, 10) : 1;
 	const postsPerPage = 9;
 	const totalPages = Math.ceil(posts.length / postsPerPage);
-
-
 
 
 	const paginatedPosts = posts.slice(

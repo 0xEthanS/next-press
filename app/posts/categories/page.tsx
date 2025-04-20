@@ -17,8 +17,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 
 export default async function Page() {
+
+	
 	const categories = await getAllCategories();
-	console.log(categories)
+
+
+
 
 	return (
         <div className="

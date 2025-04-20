@@ -162,6 +162,56 @@ export type Post = {
 	meta: any[];
 	categories: number[];
 	tags: number[];
+	
+	// Optional _embedded property for when using ?_embed in API requests
+	_embedded?: {
+		// Featured Media
+		'wp:featuredmedia'?: Array<{
+			id: number;
+			source_url: string;
+			alt_text?: string;
+			media_type: string;
+			media_details?: {
+				width: number;
+				height: number;
+				file: string;
+				sizes: {
+					[key: string]: {
+						file: string;
+						width: number;
+						height: number;
+						source_url: string;
+						mime_type: string;
+					}
+				}
+			}
+		}>;
+		
+		// Author
+		'author'?: Array<{
+			id: number;
+			name: string;
+			url?: string;
+			link?: string;
+			slug: string;
+			avatar_urls?: {
+				[key: string]: string;
+			};
+			description?: string;
+		}>;
+		
+		// Categories, Tags and other taxonomies
+		'wp:term'?: Array<Array<{
+			id: number;
+			name: string;
+			slug: string;
+			link: string;
+			taxonomy: string;
+			parent?: number;
+			count?: number;
+			description?: string;
+		}>>;
+	};
 };
   
 export interface Page extends WPEntity {

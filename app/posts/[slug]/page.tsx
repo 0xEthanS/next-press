@@ -4,21 +4,15 @@ import { EmailForm1 } from "@/components/email-form";
 import Link from 'next/link';
 import { ArticlePostPreviewCard } from '@/app/posts/components/article-post-preview-card';
 
-
-
-
-
 import {
-	getPostBySlug,
-	getFeaturedMediaById,
-	getAuthorById,
-	getCategoryById,
-	getThreePosts
+	getPostBySlug, 
+	getThreePosts, 
+	getFeaturedMediaById, 
+	getAuthorById, 
+	getCategoryById
 } from "@/lib/wordpress";
 
-
-
-
+import { getPostImageUrl } from '@/components/wp/posts-thumbnail-image-handler';
 import { Metadata } from "next";
 import Balancer from "react-wrap-balancer";
 import { ArticlePreview } from '@/components/wp/article-preview'
@@ -41,12 +35,10 @@ type Params = Promise<{ slug: string }>
 
 
 
-export async function generateMetadata(props: { params: Params }
-): Promise<Metadata> {
+export async function generateMetadata(props: { params: Params }): Promise<Metadata> {
 
 
 	const params = await props.params
-
 	const slug = params.slug
 
 
@@ -69,42 +61,55 @@ type SearchParams = Promise<{ [key: string]: string | undefined }>
 
 
 
-export default async function Page(
-	props: {
-		params: Params, 
-		searchParams: SearchParams
-	}
-) {
+export default async function Page(props: {params: Params, searchParams: SearchParams}) {
+
+
 	const searchParams = await props.searchParams
 	const params = await props.params
 	const slug = params.slug
-	const post = await getPostBySlug(slug);
-
-	console.log(post)
 
 
 
 
+	const post = await getPostBySlug(slug);	
+
+
+
+
+	const imageUrl = await getPostImageUrl(post);
+	const categoryName = post?._embedded?.['wp:term']?.[0]?.[0]?.name || null
+	const categoryId = post?._embedded?.['wp:term']?.[0]?.[0]?.id || null
+	const authorName = post?._embedded?.['author']?.[0]?.name || null;
+	const authorId = post?._embedded?.['author']?.[0]?.id || null;
+	//const authorMain = await getAuthorById(post.author);
 
 
 
 
 
 
-	const featuredMedia = await getFeaturedMediaById(post.featured_media);
 
 
-	const authorMain = await getAuthorById(post.author);
-	const date = new Date(post.date).toLocaleDateString("en-US", { month: "long",day: "numeric",year: "numeric", });
-	const categoryMain = await getCategoryById(post.categories[0]);
-
-
-
-
+	const date = new Date(post.date).toLocaleDateString(
+		"en-US", 
+		{ 
+			month: "long", 
+			day: "numeric", 
+			year: "numeric", 
+		}
+	);
 	const author = searchParams.author
 	const tag = searchParams.tag
 	const category = searchParams.category
-	const posts = await getThreePosts({ author, tag, category });
+
+
+
+
+	const posts = await getThreePosts({ 
+		author, 
+		tag, 
+		category 
+	});
 
 
 
@@ -124,7 +129,9 @@ export default async function Page(
 						"
 					>
 						<div className="mb-8 flex sm:mb-12">
-							<a className="group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 flex-row-reverse h-auto gap-2 p-0 hover:underline 
+							<Link 
+								href='/posts'
+								className="group inline-flex cursor-pointer items-center justify-center rounded-full font-mono text-sm uppercase tracking-[0.01em] transition-colors delay-75 flex-row-reverse h-auto gap-2 p-0 hover:underline 
 									border-article-border
 									bg-transparent 
 									text-article-text 
@@ -133,7 +140,7 @@ export default async function Page(
 							>
 								Back to Blog
 								<ArrowLeftIcon width={25} height={25} />
-							</a>
+							</Link>
 						</div>
 						<div className='grid gap-8 sm:grid-cols-[max-content_1fr] sm:gap-y-20'>
 							<div className='flex shrink-0'>
@@ -142,12 +149,12 @@ export default async function Page(
 									'
 								>
 									<Link
-                                        href={`/posts/?category=${categoryMain.id}`}
+                                        href={`/posts/?category=${categoryId}`}
                                         className="tracking-[0.01em] font-mono text-sm uppercase leading-[1.1] font-medium
 											text-article-text
 										"
 									>
-										{categoryMain.name}
+										{categoryName}
 									</Link>
 								</div>
 							</div>
@@ -170,10 +177,10 @@ export default async function Page(
 									'
 								>
 									Published {date} by{" "}
-									{authorMain.name && (
+									{authorName && (
 										<span>
-											<a className='hover:underline' href={`/posts/?author=${authorMain.id}`}>
-												{authorMain.name}
+											<a className='hover:underline' href={`/posts/?author=${authorId}`}>
+												{authorName}
 											</a>{" "}
 										</span>
 									)}
@@ -193,10 +200,10 @@ export default async function Page(
 
 
 			
-							{post.featured_media !== 0 && featuredMedia?.source_url ? (
+							{post.featured_media !== 0 && imageUrl ? (
 								<div className='h-96 md:h-[560px] overflow-hidden rounded-lg bg-accent/25 mb-6 flex items-center justify-center sm:mb-8'>
 									<img
-										src={featuredMedia.source_url}
+										src={imageUrl}
 										alt={post.title.rendered}
 										className="rounded-lg w-full" 
 									/>
