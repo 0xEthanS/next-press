@@ -123,6 +123,7 @@ export async function getPostBySlug(slug: string): Promise<Post> {
 	const response = await fetch(
 		url,
 		{
+			cache: 'force-cache',
 			next: { 
 				revalidate: cacheTimes 
 			}

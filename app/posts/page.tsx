@@ -151,7 +151,7 @@ export default async function Page(
 
 				"
 			>
-				<div className="mx-auto w-full max-w-(--breakpoint-xl) px-5 sm:px-10 pt-16 sm:pt-28 text-custom-bl">
+				<div className="mx-auto w-full max-w-(--breakpoint-xl) px-5 sm:px-10 pt-36 sm:pt-44 text-custom-bl">
 					<div className=" pb-14 pt-8 sm:pb-24 border-b 
 							
 							border-articles-border 

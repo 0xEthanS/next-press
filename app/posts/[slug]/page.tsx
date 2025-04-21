@@ -1,5 +1,3 @@
-"use cache"
-
 import { ArrowLeftIcon } from '@/components/icons'
 import Image from 'next/image';
 import { EmailForm1 } from "@/components/email-form";
@@ -21,6 +19,14 @@ import { ArticlePreview } from '@/components/wp/article-preview'
 import { Article } from '@/components/wp/article';
 import { config } from "../../../wp.config.mjs"
 import { SocialCluster } from "@/components/socials-cluster";
+
+
+
+// Use revalidate for caching instead of "use cache"
+export const revalidate = 86400; // 60 * 60 * 24
+
+// Make sure to handle dynamic parameters
+export const dynamicParams = true;
 
 
 
