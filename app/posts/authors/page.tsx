@@ -1,15 +1,20 @@
+"use cache"
+
 import { getAllAuthors } from "@/lib/wordpress";
 import Link from "next/link";
 import { Metadata } from "next";
 import clsx from "clsx";
 
 
-export const revalidate = 86400; // 60 * 60 * 24
 
 
-export async function generateStaticParams() {
-	return [{}]; // No dynamic parameters needed
-}
+//export const revalidate = 86400; // 60 * 60 * 24
+
+
+
+
+
+
 
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -20,19 +25,40 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 
-
-
-export default async function Page() {
-
-	
+async function Authors() {
 	const authors = await getAllAuthors();
 	console.log("---------- Authors Page() function ran ----------")
 
+	return (
+		<>
+			{authors.map((i: any, index) => (
+				<Link
+					key={i.id}
+					href={`/posts/?tag=${i.id}`}
+					className={clsx(`flex h-8 w-fit shrink-0 items-center gap-x-4 rounded-xl border px-2.5 duration-150 
+							border-articles-border
+						`,
+						{
+							"hover:bg-articles-accent-0 hover:border-articles-accent-0": [0, 3].includes(index),
+							"hover:bg-articles-accent-1 hover:border-articles-accent-1": [1].includes(index),
+							"hover:bg-articles-accent-2 hover:bord-articles-accent-2": [2].includes(index),
+						}
+					)}
+				>
+					{i.name}
+				</Link>
+			))}
+		</>
+	)
+}
 
 
 
 
 
+
+
+export default async function Page() {
 	return (
         <div className="
 				bg-articles-background
@@ -64,23 +90,7 @@ export default async function Page() {
 									All
 								</Link>
 
-								{authors.map((i: any, index) => (
-									<Link
-                                        key={i.id}
-                                        href={`/posts/?tag=${i.id}`}
-                                        className={clsx(`flex h-8 w-fit shrink-0 items-center gap-x-4 rounded-xl border px-2.5 duration-150 
-												border-articles-border
-											`,
-											{
-												"hover:bg-articles-accent-0 hover:border-articles-accent-0": [0, 3].includes(index),
-												"hover:bg-articles-accent-1 hover:border-articles-accent-1": [1].includes(index),
-												"hover:bg-articles-accent-2 hover:bord-articles-accent-2": [2].includes(index),
-											}
-										)}
-									>
-										{i.name}
-									</Link>
-								))}
+								<Authors />
 
 							</div>
 

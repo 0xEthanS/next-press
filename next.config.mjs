@@ -58,6 +58,9 @@ const cleanedUrl = extractRootDomain(baseUrl)
 
 const nextConfig = {
     output: 'standalone',
+    experimental: {
+        useCache: true,
+    },
     images: {
 		remotePatterns: [
 
