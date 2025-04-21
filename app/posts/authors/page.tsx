@@ -1,5 +1,3 @@
-"use cache"
-
 import { getAllAuthors } from "@/lib/wordpress";
 import Link from "next/link";
 import { Metadata } from "next";
