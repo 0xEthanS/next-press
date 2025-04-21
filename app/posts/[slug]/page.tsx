@@ -1,3 +1,5 @@
+"use cache"
+
 import { ArrowLeftIcon } from '@/components/icons'
 import Image from 'next/image';
 import { EmailForm1 } from "@/components/email-form";
@@ -61,17 +63,30 @@ type SearchParams = Promise<{ [key: string]: string | undefined }>
 
 
 
-export default async function Page(props: {params: Params, searchParams: SearchParams}) {
+export default async function Page(
+	props: {
+		params: Params, 
+		searchParams: SearchParams
+	}
+) {
 
 
 	const searchParams = await props.searchParams
 	const params = await props.params
 	const slug = params.slug
+	const author = searchParams.author
+	const tag = searchParams.tag
+	const category = searchParams.category
 
 
 
 
-	const post = await getPostBySlug(slug);	
+
+
+	const post = await getPostBySlug(slug);
+	const posts = await getThreePosts({ author, tag, category });	
+
+
 
 
 
@@ -82,14 +97,6 @@ export default async function Page(props: {params: Params, searchParams: SearchP
 	const authorName = post?._embedded?.['author']?.[0]?.name || null;
 	const authorId = post?._embedded?.['author']?.[0]?.id || null;
 	//const authorMain = await getAuthorById(post.author);
-
-
-
-
-
-
-
-
 	const date = new Date(post.date).toLocaleDateString(
 		"en-US", 
 		{ 
@@ -98,18 +105,7 @@ export default async function Page(props: {params: Params, searchParams: SearchP
 			year: "numeric", 
 		}
 	);
-	const author = searchParams.author
-	const tag = searchParams.tag
-	const category = searchParams.category
 
-
-
-
-	const posts = await getThreePosts({ 
-		author, 
-		tag, 
-		category 
-	});
 
 
 
