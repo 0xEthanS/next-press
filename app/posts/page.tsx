@@ -49,6 +49,7 @@ export async function generateStaticParams() {
 		{ page: "1" },
 		{ page: "2" }
 	];
+	return paths;
 }
 
 
