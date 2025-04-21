@@ -121,7 +121,6 @@ export default async function Page(
                     />)
 
                 ) : (
-
                     // Use client-side parsing for dynamic routes
                     (<ClientContentParser 
                         content={processedRenderedContent}
