@@ -5,6 +5,12 @@ import {
 	getAllCategories 
 } from "@/lib/wordpress";
 
+import { 
+	Post, 
+	Author, 
+	Tag, 
+	Category
+} from "@/lib/types"
 
 import { 
 	Pagination, 
@@ -14,16 +20,12 @@ import {
 	PaginationNext, 
 	PaginationPrevious 
 } from "@/components/ui/pagination";
-
 import { PostCard } from "@/app/posts/components/post-cards";
-
 import { Filter } from "@/app/posts/components/filter";
 import { EmailForm0 } from "@/components/email-form";
 import clsx from "clsx";
-
 import { HeroSubPostCard } from "@/app/posts/components/hero-sub-post-cards"
 import { HeroMainPostCard } from "@/app/posts/components/hero-main-post-card"
-
 import { config } from "../../wp.config.mjs"
 import { SocialCluster } from "@/components/socials-cluster";
 
@@ -32,8 +34,8 @@ import { SocialCluster } from "@/components/socials-cluster";
 
 const emailSlogan = config.footerData.emailSlogan
 
-type SearchParams = Promise<{ [key: string]: string | undefined }>
 
+type SearchParams = Promise<{ [key: string]: string | undefined }>
 
 
 export const revalidate = 3600;
@@ -64,6 +66,34 @@ export default async function Page(
 	const authors = await getAllAuthors();
 	const tags = await getAllTags();
 	const categories = await getAllCategories();
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	console.log("---------- @/app/post functions ran ----------")
 

@@ -47,7 +47,14 @@ export async function getAllPosts(filterParams?: {author?: string;tag?: string;c
 	console.log("---------- getAllPosts() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url, 
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const posts: Post[] = await response.json();
 	return posts;
 }
@@ -68,7 +75,14 @@ export async function getThreePosts(filterParams?: { author?: string; tag?: stri
 	console.log("---------- getThreePosts() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url, 
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const posts: Post[] = await response.json();
     return posts
 }
@@ -82,7 +96,14 @@ export async function getPostById(id: number): Promise<Post> {
 	console.log("---------- getPostsById() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const post: Post = await response.json();
 	return post;
 }
@@ -97,10 +118,21 @@ export async function getPostBySlug(slug: string): Promise<Post> {
 	console.log("---------- getPostsBySlug() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const post: Post[] = await response.json();
 	return post[0];
 }
+
+
+
+
 
 
 export async function getAllCategories(): Promise<Category[]> {
@@ -111,10 +143,27 @@ export async function getAllCategories(): Promise<Category[]> {
 	console.log("---------- getAllCategories() Ran ----------")
 
 
-	const response = await fetch(url);
+	//const response = await fetch(url);
+	// This caches the response on Vercel's servers
+	const response = await fetch(
+		url, 
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
+
+
+
+
 	const categories: Category[] = await response.json();
 	return categories;
 }
+
+
+
+
 
 
 export async function getCategoryById(id: number): Promise<Category> {
@@ -125,7 +174,14 @@ export async function getCategoryById(id: number): Promise<Category> {
 	console.log("---------- getCategoryById() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const category: Category = await response.json();
 	return category;
 }
@@ -140,7 +196,14 @@ export async function getCategoryBySlug(slug: string): Promise<Category> {
 	console.log("---------- getCategoryBySlug() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const category: Category[] = await response.json();
 	return category[0];
 }
@@ -155,7 +218,14 @@ export async function getPostsByCategory(categoryId: number): Promise<Post[]> {
 	console.log("---------- getPostsByCategoryBy() Ran ----------")
 
 	
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const posts: Post[] = await response.json();
 	return posts;
 }
@@ -170,7 +240,14 @@ export async function getPostsByTag(tagId: number): Promise<Post[]> {
 	console.log("---------- getPostsByTag() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const posts: Post[] = await response.json();
 	return posts;
 }
@@ -185,7 +262,14 @@ export async function getTagsByPost(postId: number): Promise<Tag[]> {
 	console.log("---------- getTagByPost() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const tags: Tag[] = await response.json();
 	return tags;
 }
@@ -199,7 +283,17 @@ export async function getAllTags(): Promise<Tag[]> {
 	console.log("---------- getAllTags() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url, 
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
+
+
+
 	const tags: Tag[] = await response.json();
 	return tags;
 }
@@ -213,7 +307,14 @@ export async function getTagById(id: number): Promise<Tag> {
 	console.log("---------- getTagsById() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const tag: Tag = await response.json();
 	return tag;
 }
@@ -228,7 +329,14 @@ export async function getTagBySlug(slug: string): Promise<Tag> {
 	console.log("---------- getTagBySlug() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const tag: Tag[] = await response.json();
 	return tag[0];
 }
@@ -242,7 +350,14 @@ export async function getAllAuthors(): Promise<Author[]> {
 	console.log("---------- getAllAuthors() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url, 
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const authors: Author[] = await response.json();
 	return authors;
 }
@@ -256,7 +371,14 @@ export async function getAuthorById(id: number): Promise<Author> {
 	console.log("---------- getAuthorById() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const author: Author = await response.json();
 	return author;
 }
@@ -271,7 +393,14 @@ export async function getAuthorBySlug(slug: string): Promise<Author> {
 	console.log("---------- getAuthorBySlug() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const author: Author[] = await response.json();
 	return author[0];
 }
@@ -286,7 +415,14 @@ export async function getPostsByAuthor(authorId: number): Promise<Post[]> {
 	console.log("---------- getPostsByAuthor() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const posts: Post[] = await response.json();
 	return posts;
 }
@@ -302,7 +438,14 @@ export async function getPostsByAuthorSlug(authorSlug: string): Promise<Post[]> 
 	console.log("---------- getPostsByAuthorSlug() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const posts: Post[] = await response.json();
 	return posts;
 }
@@ -318,7 +461,14 @@ export async function getPostsByCategorySlug(categorySlug: string): Promise<Post
 	console.log("---------- getPostsByCategorySlug() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const posts: Post[] = await response.json();
 	return posts;
 }
@@ -334,7 +484,14 @@ export async function getPostsByTagSlug(tagSlug: string): Promise<Post[]> {
 	console.log("---------- getPostsByTagSlug() Ran ----------")
 
 
-	const response = await fetch(url);
+	const response = await fetch(
+		url,
+		{
+			next: { 
+				revalidate: cacheTimes 
+			}
+		}
+	);
 	const posts: Post[] = await response.json();
 	return posts;
 }
