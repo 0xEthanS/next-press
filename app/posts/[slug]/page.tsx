@@ -22,14 +22,6 @@ import { SocialCluster } from "@/components/socials-cluster";
 
 
 
-// Use revalidate for caching instead of "use cache"
-export const revalidate = 86400; // 60 * 60 * 24
-
-// Make sure to handle dynamic parameters
-export const dynamicParams = true;
-
-
-
 
 const emailSlogan = config.footerData.emailSlogan
 

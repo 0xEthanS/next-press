@@ -15,6 +15,8 @@ export const ServerContentParser = (
 	}: any
 ) => {
 
+	console.log("---------- Server Content Parser Ran ----------")
+
 	if (!content) return null;
 
 	const options = {
