@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import clsx from "clsx";
 
 
+export const revalidate = 86400; // 60 * 60 * 24
 
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -20,6 +21,7 @@ export default async function Page() {
 
 	
 	const authors = await getAllAuthors();
+	console.log("---------- Authors Page() function ran ----------")
 
 
 

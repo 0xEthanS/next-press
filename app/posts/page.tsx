@@ -38,23 +38,7 @@ const emailSlogan = config.footerData.emailSlogan
 type SearchParams = Promise<{ [key: string]: string | undefined }>
 
 
-
-
 export const revalidate = 3600;
-export const dynamicParams = true;
-
-//export const dynamic = 'force-static';
-//export const fetchCache = 'force-cache';
-
-
-export async function generateStaticParams() {
-	const paths = [
-		{}, // Main posts page
-		{ page: "1" },
-		{ page: "2" }
-	];
-	return paths;
-}
 
 
 
