@@ -5,21 +5,8 @@ import {
 	getAllCategories 
 } from "@/lib/wordpress";
 
-import { 
-	Post, 
-	Author, 
-	Tag, 
-	Category
-} from "@/lib/types"
-
-import { 
-	Pagination, 
-	PaginationContent, 
-	PaginationItem, 
-	PaginationLink, 
-	PaginationNext, 
-	PaginationPrevious 
-} from "@/components/ui/pagination";
+//import { Post, Author, Tag, Category} from "@/lib/types"
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { PostCard } from "@/app/posts/components/post-cards";
 import { Filter } from "@/app/posts/components/filter";
 import { EmailForm0 } from "@/components/email-form";
@@ -32,13 +19,43 @@ import { SocialCluster } from "@/components/socials-cluster";
 
 
 
+
+
+
+// 1. Add "use cache" directive for experimental caching (if enabled in next.config.js)
+"use cache"
+
+// 2. Add revalidate for standard caching - 1 hour (3600 seconds)
+export const revalidate = 3600;
+
+// 3. Use dynamic params to allow caching with URL parameters
+export const dynamicParams = true;
+
+// 4. Add generateStaticParams to pre-generate common routes
+export async function generateStaticParams() {
+	return [
+		{}, // Main posts page
+		{ page: "1" }
+	];
+}
+
+
+
+
+
+
+
+
+
+
+
 const emailSlogan = config.footerData.emailSlogan
 
 
 type SearchParams = Promise<{ [key: string]: string | undefined }>
 
 
-export const revalidate = 3600;
+//export const revalidate = 3600;
 
 
 

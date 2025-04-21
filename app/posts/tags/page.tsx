@@ -1,3 +1,6 @@
+"use cache"
+
+import { unstable_cacheLife as cacheLife } from 'next/cache'
 import { getAllTags } from "@/lib/wordpress";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -16,14 +19,37 @@ export async function generateMetadata(): Promise<Metadata> {
 
 
 
-export default async function Page() {
-
-	
+async function Tags() {
 	const tags = await getAllTags();
+	console.log("---------- Authors Page() function ran ----------")
+
+	return (
+		<>
+			{tags.map((i: any, index) => (
+				<Link
+					key={i.id}
+					href={`/posts/?tag=${i.id}`}
+					className={clsx(`flex h-8 w-fit shrink-0 items-center gap-x-4 rounded-xl border px-2.5 duration-150 
+							border-articles-border
+						`,
+						{
+							"hover:bg-articles-accent-0 hover:border-articles-accent-0": [0, 3, 6, 9].includes(index),
+							"hover:bg-articles-accent-1 hover:border-articles-accent-1": [1, 4, 7, 10].includes(index),
+							"hover:bg-articles-accent-2 hover:border-articles-accent-2": [2, 5, 8, 11].includes(index),
+						}
+					)}
+				>
+					{i.name}
+				</Link>
+			))}
+		</>
+	)
+}
 
 
 
 
+export default async function Page() {
 	return (
         <div className="
 				bg-articles-background
@@ -55,23 +81,7 @@ export default async function Page() {
 									All
 								</Link>
 
-								{tags.map((i: any, index) => (
-									<Link
-                                        key={i.id}
-                                        href={`/posts/?tag=${i.id}`}
-                                        className={clsx(`flex h-8 w-fit shrink-0 items-center gap-x-4 rounded-xl border px-2.5 duration-150 
-												border-articles-border
-											`,
-											{
-												"hover:bg-articles-accent-0 hover:border-articles-accent-0": [0, 3].includes(index),
-												"hover:bg-articles-accent-1 hover:border-articles-accent-1": [1].includes(index),
-												"hover:bg-articles-accent-2 hover:bord-articles-accent-2": [2].includes(index),
-											}
-										)}
-                                    >
-										{i.name}
-									</Link>
-								))}
+								<Tags />
 
 							</div>
 

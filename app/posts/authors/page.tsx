@@ -1,5 +1,6 @@
 "use cache"
 
+import { unstable_cacheLife as cacheLife } from 'next/cache'
 import { getAllAuthors } from "@/lib/wordpress";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -39,9 +40,9 @@ async function Authors() {
 							border-articles-border
 						`,
 						{
-							"hover:bg-articles-accent-0 hover:border-articles-accent-0": [0, 3].includes(index),
-							"hover:bg-articles-accent-1 hover:border-articles-accent-1": [1].includes(index),
-							"hover:bg-articles-accent-2 hover:bord-articles-accent-2": [2].includes(index),
+							"hover:bg-articles-accent-0 hover:border-articles-accent-0": [0, 3, 6, 9].includes(index),
+							"hover:bg-articles-accent-1 hover:border-articles-accent-1": [1, 4, 7, 10].includes(index),
+							"hover:bg-articles-accent-2 hover:border-articles-accent-2": [2, 5, 8, 11].includes(index),
 						}
 					)}
 				>

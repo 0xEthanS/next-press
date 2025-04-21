@@ -50,6 +50,7 @@ export async function getAllPosts(filterParams?: {author?: string;tag?: string;c
 	const response = await fetch(
 		url, 
 		{
+			cache: 'force-cache',
 			next: { 
 				revalidate: cacheTimes 
 			}

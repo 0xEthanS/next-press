@@ -123,9 +123,9 @@ export function Filter(
 									`,
 									{
 										"bg-[#353535] text-white hover:text-[#353535]": tag.id.toString() === selectedTag?.toString(),
-										"hover:bg-articles-accent-0 hover:border-articles-accent-0": [0, 3].includes(index),
-										"hover:bg-articles-accent-1 hover:border-articles-accent-1": [1].includes(index),
-										"hover:bg-articles-accent-2 hover:bord-articles-accent-2": [2].includes(index),
+										"hover:bg-articles-accent-0 hover:border-articles-accent-0": [0, 3, 6, 9, 12, 15].includes(index),
+										"hover:bg-articles-accent-1 hover:border-articles-accent-1": [1, 4, 7, 10, 13, 16].includes(index),
+										"hover:bg-articles-accent-2 hover:border-articles-accent-2": [2, 5, 8, 11, 14, 17].includes(index),
 									}
 								)
 							}
