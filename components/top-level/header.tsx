@@ -10,38 +10,23 @@ import { config } from "../../wp.config.mjs"
 const logo = config.logo
 const utilityBanner = config.navMenu.utilityBanner
 
-
-
-
 export function Header() {
     const pathname = usePathname()
-    const [path, setPath] = useState("")
     const [isMainHeaderVisible, setIsMainHeaderVisible] = useState(true)
-
-
-
-
-    const [isTransparent, setIsTransparent] = useState(false)
-
-
-
-
+    const [isTransparent, setIsTransparent] = useState(true) // Default to transparent
     const lastScrollY = useRef(0)
     const ticking = useRef(false)
-
-
-
 
     const transparentRoutes = [
         '/',
     ]
 
-
-
-
+    // Update transparency based on current pathname and scroll position
     useEffect(() => {
-        setPath(pathname);
-    }, [])
+        const shouldBeTransparent = transparentRoutes.includes(pathname) && window.scrollY <= 25
+        setIsTransparent(shouldBeTransparent)
+    }, [pathname])
+
     useEffect(() => {
         const handleScroll = () => {
             if (!ticking.current) {
@@ -50,17 +35,9 @@ export function Header() {
                     const maxScroll = document.documentElement.scrollHeight - window.innerHeight
                     const isAtBottom = Math.abs(currentScrollY - maxScroll) < 50 // Small threshold for bottom detection
                     
-                    
-
-
                     // Only apply transparency if we're on a designated route
-                    const shouldBeTransparent = transparentRoutes.includes(pathname)
-
-
-                    setIsTransparent(shouldBeTransparent && currentScrollY <= 25)
-                    
-
-
+                    const shouldBeTransparent = transparentRoutes.includes(pathname) && currentScrollY <= 25
+                    setIsTransparent(shouldBeTransparent)
 
                     // Handle header visibility
                     if (!isAtBottom) { // Only process normal scroll behavior if not at bottom
@@ -78,6 +55,7 @@ export function Header() {
                 ticking.current = true
             }
         }
+        
         // Handle resize events to recalculate maxScroll
         const handleResize = () => {
             const maxScroll = document.documentElement.scrollHeight - window.innerHeight
@@ -89,48 +67,29 @@ export function Header() {
             }
         }
 
-
-
-
-        // Initial check for transparency based on route
-        const shouldBeTransparent = transparentRoutes.includes(pathname)
-        setIsTransparent(shouldBeTransparent && window.scrollY <= 25)
-        
-        
-
-
         window.addEventListener('scroll', handleScroll, { passive: true })
         window.addEventListener('resize', handleResize, { passive: true })
+        
         return () => {
             window.removeEventListener('scroll', handleScroll)
             window.removeEventListener('resize', handleResize)
         }
-    }, [])
-
-
-
+    }, [pathname]) // Add pathname to dependency array to update on route change
 
     return (
         <header className="w-full fixed top-0 shrink-0 z-50">
-
-
-
-
             {/* Utility Banner; Height = 41px */}
             <div className="border-b w-full sm:px-3.5 z-50 sticky
                     border-utility-banner-border
                     bg-utility-banner-background
                 "
             >
-
                 <div className="mx-auto w-fit py-2 flex flex-row items-center">
                     <div className="pr-3 text-sm leading-6
                             text-utility-banner-text
                         "
                     >
                     </div>
-
-
 
                     {/* Button 1 */}
                     <a 
@@ -145,17 +104,8 @@ export function Header() {
                         </div>
                         <ArrowRightIcon />
                     </a>
-
-
-
-
-
                 </div>
-
             </div>
-
-
-
 
             {/* Main Header; Height = 64px */}
             <div 
@@ -170,20 +120,13 @@ export function Header() {
                     transition-transform 
                     duration-300 
                     justify-between 
-                    border-b 
-                    border-transparent
+                    border-b
 
-
-                    ${isTransparent ? 'bg-transparent border-transparent' : 'bg-navbar-background'}
-
+                    ${isTransparent ? 'bg-transparent border-transparent' : 'bg-navbar-background border-navbar-border'}
 
                     ${isMainHeaderVisible ? 'translate-y-0' : '-translate-y-16'}
                 `}
             >
-
-
-
-
                 <div className=''>
                     <a href='/'>
                         <Image 
@@ -196,17 +139,10 @@ export function Header() {
                     </a>
                 </div>
                 <NavigationMenuDemo 
-                    path={path} 
+                    path={pathname} // Pass the current pathname directly 
                     transparent={isTransparent}
                 />
             </div>
-
-
-
-
         </header>
     )
 }
-
-
-
