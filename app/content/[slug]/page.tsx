@@ -15,12 +15,9 @@ type Params = Promise<{ slug: string }>
 
 
 
-export const dynamicParams = false; // Only pre-render pages defined by generateStaticParams
+export const dynamicParams = true;
 
-// Add this to your page.tsx file
-export const dynamic = 'force-static';
 
-export const revalidate = 3600; // 1 hour in seconds (60 * 60)
 const slugsArray = config.static.content
 
 
