@@ -78,6 +78,7 @@ export async function getThreePosts(filterParams?: { author?: string; tag?: stri
 	const response = await fetch(
 		url, 
 		{
+			cache: 'force-cache',
 			next: { 
 				revalidate: cacheTimes 
 			}
@@ -148,6 +149,7 @@ export async function getAllCategories(): Promise<Category[]> {
 	const response = await fetch(
 		url, 
 		{
+			cache: 'force-cache',
 			next: { 
 				revalidate: cacheTimes 
 			}
@@ -286,6 +288,7 @@ export async function getAllTags(): Promise<Tag[]> {
 	const response = await fetch(
 		url, 
 		{
+			cache: 'force-cache',
 			next: { 
 				revalidate: cacheTimes 
 			}
@@ -353,6 +356,7 @@ export async function getAllAuthors(): Promise<Author[]> {
 	const response = await fetch(
 		url, 
 		{
+			cache: 'force-cache',
 			next: { 
 				revalidate: cacheTimes 
 			}

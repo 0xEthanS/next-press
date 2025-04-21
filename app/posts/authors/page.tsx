@@ -9,6 +9,11 @@ import clsx from "clsx";
 export const revalidate = 86400; // 60 * 60 * 24
 
 
+export async function generateStaticParams() {
+	return [{}]; // No dynamic parameters needed
+}
+
+
 export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title: "All Authors",
