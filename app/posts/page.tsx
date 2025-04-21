@@ -1,5 +1,5 @@
 // 1. Add "use cache" directive for experimental caching (if enabled in next.config.js)
-"use cache"
+// "use cache"
 
 import { 
 	getAllPosts, 
