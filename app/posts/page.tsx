@@ -1,3 +1,6 @@
+// 1. Add "use cache" directive for experimental caching (if enabled in next.config.js)
+"use cache"
+
 import { 
 	getAllPosts, 
 	getAllAuthors, 
@@ -21,9 +24,6 @@ import { SocialCluster } from "@/components/socials-cluster";
 
 
 
-
-// 1. Add "use cache" directive for experimental caching (if enabled in next.config.js)
-"use cache"
 
 // 2. Add revalidate for standard caching - 1 hour (3600 seconds)
 export const revalidate = 3600;
