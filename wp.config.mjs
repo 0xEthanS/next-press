@@ -432,7 +432,7 @@ export const config = {
 			'donate', 
 			'volunteer', 
 			'contact-us', 
-			//'4th-floor-room-rental',
+			'4th-floor-room-rental',
 		]
 	},
 	wp: {
