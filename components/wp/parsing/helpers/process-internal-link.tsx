@@ -1,4 +1,5 @@
-
+import { config } from "../../../../wp.config.mjs"
+const hostname = config.hostname
 
 
 
@@ -13,6 +14,14 @@ export const processInternalLink = (href: string): string => {
 
 
 		if (!href) return '#';
+
+
+
+	
+
+		if (href.startsWith('http') && !href.includes(hostname)) {
+			return href;
+		}
 	
 
 

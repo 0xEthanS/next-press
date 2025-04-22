@@ -57,6 +57,8 @@ export default async function Page(
 
 
 
+
+
 	const page = await getPageBySlug(slug);
 
 	const title = page?.title?.rendered
