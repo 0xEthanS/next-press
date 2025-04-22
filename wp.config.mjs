@@ -413,7 +413,7 @@ export const config = {
 			'board-of-directors', 
 			'advisory-council', 
 			'associate-board', 
-			'staff', 
+			//'staff', 
 			'in-memoriam', 
 			'obituary-of-mrs-jean-lee', 
 			'information-for-visitors', 
@@ -423,7 +423,7 @@ export const config = {
 			'lunar-new-year-history-and-traditions-explained', 
 			'education', 
 			'burnham-wildlife-corridor', 
-			'teaach-act', 
+			//'teaach-act', 
 			'chinese-american-asian-american-history-videos-on-pbs', 
 			'the-teaach-act-is-passed', 
 			'uncovering-asian-american-stories-in-evanston-and-the-midwest', 
@@ -432,7 +432,7 @@ export const config = {
 			'donate', 
 			'volunteer', 
 			'contact-us', 
-			'4th-floor-room-rental',
+			//'4th-floor-room-rental',
 		]
 	},
 	wp: {
