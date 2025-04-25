@@ -1,4 +1,4 @@
-import { JSDOM } from 'jsdom';
+import * as cheerio from 'cheerio';
 import { processInternalLink } from '@/components/wp/parsing/helpers/process-internal-link';
 
 
@@ -6,147 +6,99 @@ import { processInternalLink } from '@/components/wp/parsing/helpers/process-int
 
 export const processWPContent = (rawContent: string): string => {
 	try {
-		// Create virtual DOM
-		const virtualDom = new JSDOM(rawContent);
-		const document = virtualDom.window.document;
-		
-
-
+		// Load HTML into cheerio instead of creating virtual DOM
+		const $ = cheerio.load(rawContent);
 
 		// Process each image
-		document.querySelectorAll('img').forEach((img) => {
-			const src = img.getAttribute('src');
-      		const dataSrc = img.getAttribute('data-src');
+		$('img').each((_, img) => {
+			const $img = $(img);
+			const src = $img.attr('src');
+			const dataSrc = $img.attr('data-src');
 
-
-			  if ((!src && !dataSrc) || (src && src.includes('blank.gif')) || (src === '')) {
-			
+			if ((!src && !dataSrc) || (src && src.includes('blank.gif')) || (src === '')) {
 				// If it's inside a paragraph that only contains this image, remove the entire paragraph
-				const parent = img.parentNode;
-				if (parent && parent.nodeName === 'P') {
-					const parentContent = parent.textContent?.trim();
+				const $parent = $img.parent();
+				if ($parent.is('p')) {
+					const parentContent = $parent.text().trim();
 					if (!parentContent || parentContent === '') {
-						parent.parentNode?.removeChild(parent);
+						$parent.remove();
 					} else {
 						// Otherwise just remove the image
-						img.parentNode?.removeChild(img);
+						$img.remove();
 					}
 				} else {
 					// If not in a paragraph, just remove the image
-					img.parentNode?.removeChild(img);
+					$img.remove();
 				}
 				
 				// Skip further processing for this removed image
 				return;
 			}
 
-
-
-
 			// Get the real image URL from data-src
-			const realSrc = img.getAttribute('data-src');
+			const realSrc = $img.attr('data-src');
 			if (realSrc) {
 				// Replace placeholder with actual image URL
-				img.setAttribute('src', realSrc);
+				$img.attr('src', realSrc);
 			}
 
 			// Get srcset from data-srcset if available
-			const realSrcset = img.getAttribute('data-srcset');
+			const realSrcset = $img.attr('data-srcset');
 			if (realSrcset) {
-				img.setAttribute('srcset', realSrcset);
+				$img.attr('srcset', realSrcset);
 			}
 
 			// Get sizes from data-sizes if available
-			const sizes = img.getAttribute('data-sizes');
+			const sizes = $img.attr('data-sizes');
 			if (sizes) {
-				img.setAttribute('sizes', sizes);
+				$img.attr('sizes', sizes);
 			}
-
-
-			// const srcSet = img.getAttribute('srcSet')
-			// console.log("srcSet: ", srcSet);
-
-
-
-
-
-
-
 
 			// Remove lazy loading specific attributes we no longer need
-			img.removeAttribute('data-src');
-			img.removeAttribute('data-srcset');
-			img.removeAttribute('data-sizes');
-			img.removeAttribute('loading');
-			img.removeAttribute('decoding');
-			img.removeAttribute('srcset');
-		
-
-
+			$img.removeAttr('data-src');
+			$img.removeAttr('data-srcset');
+			$img.removeAttr('data-sizes');
+			$img.removeAttr('loading');
+			$img.removeAttr('decoding');
+			$img.removeAttr('srcset');
 
 			// Remove the base64 placeholder if it's still there
-			const currentSrc = img.getAttribute('src');
+			const currentSrc = $img.attr('src');
 			if (currentSrc?.startsWith('data:image/gif;base64')) {
-				img.setAttribute('src', realSrc || '');
+				$img.attr('src', realSrc || '');
 			}
-
-
-
-
 		});
-
-
-
 
 		// Process anchor tags
-		document.querySelectorAll('a').forEach((anchor) => {
-			const href = anchor.getAttribute('href');
+		$('a').each((_, anchor) => {
+			const $anchor = $(anchor);
+			const href = $anchor.attr('href');
 			if (href) {
-				anchor.setAttribute('href', processInternalLink(href));
+				$anchor.attr('href', processInternalLink(href));
 			}
 		});
 
-
-		document.querySelectorAll('object[type="application/pdf"]').forEach((obj) => {
+		// Process PDF objects
+		$('object[type="application/pdf"]').each((_, obj) => {
+			const $obj = $(obj);
 			// Remove the hidden attribute to make it visible
-			obj.removeAttribute('hidden');
-			obj.removeAttribute('data-wp-bind--hidden');
+			$obj.removeAttr('hidden');
+			$obj.removeAttr('data-wp-bind--hidden');
 			
 			// Make sure it has proper dimensions
-			if (!obj.getAttribute('style')) {
-			  	obj.setAttribute('style', 'width:100%;height:800px');
+			if (!$obj.attr('style')) {
+				$obj.attr('style', 'width:100%;height:800px');
 			}
 		});
 
+		// Remove noscript tags
+		$('noscript').remove();
 
-
-
-		// Remove noscript tags using proper element type
-		const noscriptElements = document.getElementsByTagName('noscript');
-		while (noscriptElements.length > 0) {
-			const element = noscriptElements[0];
-			element.parentNode?.removeChild(element);
-		}
-
-
-
-		// Data-type: Object ----- document
-
-		// Data-type: HTMLBodyElement object ----- document.body
-		// HTMLBodyElement inherits from HTMLElement which inherits from Element and Node
-
-		// Data-type: String ----- document.body.innerHTML
-
-		return document.body.innerHTML;
-
-
-
+		// Return the processed HTML
+		return $.html('body').replace(/<\/?body>/g, '');
 
 	} catch (error) {
 		console.error('Error processing content:', error);
 		return rawContent; // Return original content if processing fails
 	}
 };
-
-
-

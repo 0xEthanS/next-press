@@ -62,12 +62,18 @@ export default async function Page(
 	const page = await getPageBySlug(slug);
 
 	const title = page?.title?.rendered
+
+
+	// Decode Step of HTML!!!!!!!!!!!!!!!!!
 	const decodedTitle = decode(title)
 
 
 
 
 	const renderedContent = page?.content?.rendered
+
+
+	// Pre-Processing steps for nasent HMTL Entities!!!!!!!!!!!!!!!!!!!!!!!
 	const processedRenderedContent = processWPContent(renderedContent)
 
 
