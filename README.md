@@ -17,14 +17,14 @@ npm install --legacy-peer-deps
 
 
 ## Helpful URL's
-	- Posts:
-		- https://example.org/wp-json/wp/v2/posts
-	
-	- Pages: 
-		- https://example.org/wp-json/wp/v2/pages
+  - Posts:
+    - https://example.org/wp-json/wp/v2/posts
+  
+  - Pages: 
+    - https://example.org/wp-json/wp/v2/pages
 
-	- Media: 
-		- https://example.org/wp-json/wp/v2/media
+  - Media: 
+    - https://example.org/wp-json/wp/v2/media
 
 
 
@@ -53,24 +53,24 @@ I want help conceptualizing a brand identity. I want you to create brand guideli
 
 
 
-
+hi
 
 
 
 
 
 ## Prompt Anatomy:
-	- Paragraph 1 (Initial Request):
-		- Hi, I need help creating a brand identity for my website.
+  - Paragraph 1 (Initial Request):
+    - Hi, I need help creating a brand identity for my website.
 
-	- Paragraph 2 (Website Name & Basic Description):
-		- The website is curatorai, I am offering 2 services, the first is to implement RAG for museums, and the second is a headless wordpress implementation that speeds up their site, restyles it, and makes it easier to do ai integrations. My first clients will be museums/history centers, and I will move onto dentists offices and law firms. 
+  - Paragraph 2 (Website Name & Basic Description):
+    - The website is curatorai, I am offering 2 services, the first is to implement RAG for museums, and the second is a headless wordpress implementation that speeds up their site, restyles it, and makes it easier to do ai integrations. My first clients will be museums/history centers, and I will move onto dentists offices and law firms. 
 
-	- Paragraph 3 (Brand Style Description):
-		- Prompt:
-			- I want the style of the brand to be this new type of (==california, futurism, minimalism==) that I'm seeing with (==anthropic, higher order company, and friend.ai==)
-		- Prompt Source:
-			-  
+  - Paragraph 3 (Brand Style Description):
+    - Prompt:
+      - I want the style of the brand to be this new type of (==california, futurism, minimalism==) that I'm seeing with (==anthropic, higher order company, and friend.ai==)
+    - Prompt Source:
+      -  
 
 
 
