@@ -15,7 +15,7 @@ export const ServerContentParser = (
 	}: any
 ) => {
 
-	console.log("---------- Server Content Parser Ran ----------")
+	console.log("Server Content Parser Ran")
 
 	if (!content) return null;
 
@@ -190,6 +190,7 @@ export const ServerContentParser = (
 			if (domNode.name === 'a') {
 				const { 
 					href, 
+					class: className, 
 					...restAttribs 
 				} = domNode.attribs;
 
@@ -207,7 +208,7 @@ export const ServerContentParser = (
                     <Link 
 						href={finalHref} 
 						{...restAttribs} 
-						className='underline' 
+						className={className + "underline"}
 					>
                         {
 							domToReact(

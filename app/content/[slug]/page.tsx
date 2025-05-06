@@ -45,14 +45,14 @@ export default async function Page(
     }
 ) {
 
-    console.log("------------------ Eyyyyyyyyyyy, the Page() function ran ----------------------")
+    console.log("Eyyyyyyyyyyy, the Page() function ran")
 
 
 	const params = await props.params
     const slug = params.slug
 
 	const isStaticRoute = slugsArray.includes(slug);
-    console.log("---------- isStaticRouteValue: ", isStaticRoute, " ----------")
+    console.log("isStaticRouteValue: ", isStaticRoute)
 
 
 
