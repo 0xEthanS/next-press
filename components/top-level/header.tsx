@@ -134,7 +134,7 @@ export function Header() {
                             width={logo.width}
                             height={logo.height}
                             alt={logo.alt}
-                            className="w-32 mr-10"
+                            className="w-16 mr-10"
                         />
                     </a>
                 </div>

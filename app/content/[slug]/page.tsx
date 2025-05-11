@@ -6,7 +6,11 @@ import { PageContent } from "@/components/pages/page-templates";
 import { processWPContent } from '@/components/wp/parsing/helpers/process-wp-content';
 import { ServerContentParser } from "@/components/wp/parsing/server-content-parser";
 import { ClientContentParser } from "@/components/wp/parsing/client-content-parser";
+
+
 import { decode } from 'he';
+
+
 import { config } from "../../../wp.config.mjs";
 
 
@@ -61,20 +65,26 @@ export default async function Page(
 
 	const page = await getPageBySlug(slug);
 
+
 	const title = page?.title?.rendered
 
 
+
 	// Decode Step of HTML!!!!!!!!!!!!!!!!!
-	const decodedTitle = decode(title)
+	const decodedTitle = title ? decode(title) : '';
 
 
 
 
-	const renderedContent = page?.content?.rendered
+
+	const renderedContent = page?.content?.rendered;
+	// Only process content if it exists and is a string
+	const processedRenderedContent = typeof renderedContent === 'string'
+		? processWPContent(renderedContent)
+		: '';
 
 
-	// Pre-Processing steps for nasent HMTL Entities!!!!!!!!!!!!!!!!!!!!!!!
-	const processedRenderedContent = processWPContent(renderedContent)
+
 
 
 

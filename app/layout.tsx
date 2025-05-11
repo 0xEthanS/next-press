@@ -4,15 +4,17 @@ import Footer from "@/components/top-level/footer";
 import { Header } from "@/components/top-level/header";
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { config } from "../wp.config.mjs"
-
-
-
-
-
 import { 
+	Geist, 
+	Geist_Mono, 
+	Bebas_Neue, 
+	Oswald, 
+	Libre_Baskerville, 
 	Inter,
-	//Space_Grotesk  
-} from 'next/font/google'
+	Space_Grotesk, 
+	Montserrat, 
+	Noto_Sans_SC
+} from "next/font/google";
 
 
 
@@ -20,22 +22,54 @@ import {
 const inter = Inter({
 	subsets: ['latin'],
 	display: 'swap',
-  })
+})
 
 
-//export const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
+const spaceGrotesk = Space_Grotesk({ 
+	subsets: ['latin'] 
+});
 
 
 
 
+
+
+const title = config.meatadata.title
+const description = config.meatadata.description
+const url = ""
 
 
 
 
 export const metadata: Metadata = {
-	title: config.meatadata.title,
-	description: config.meatadata.description,
-};
+	title: title,
+	description: description,
+	metadataBase: new URL("https://curatorai.dev"),
+	icons: {
+	  	icon: 'logo.svg',
+	},
+	openGraph: {
+		title: title,
+		description: description,
+		url: "https://curatorai.dev",
+		siteName: title,
+		images: [
+			{
+				url: "/logo.png", 
+				width: 800,       
+				height: 600,
+				alt: title,
+			},
+		],
+		type: "website",
+	},
+}
+
+
+
+
+
+
 
 
 

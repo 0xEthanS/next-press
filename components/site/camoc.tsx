@@ -1,17 +1,23 @@
-//import Hero from '@/components/home/hero';
-import Hero from '@/components/home/hero-camoc';
 import React from 'react';
 import Link from 'next/link';
-import { Playfair_Display, Noto_Sans_SC } from "next/font/google";
 import Image from "next/image";
-const playfair = Playfair_Display({ subsets: ['latin'] });
-const notoSans = Noto_Sans_SC({ subsets: ['latin'] });
 import { 
 	MainContainer, 
 	ContentSectionButton, 
 	ImageContainer, 
 	TextContainer 
 } from "@/components/pages/content-section";
+
+
+//import Hero from '@/components/home/hero';
+import { Hero0 } from '@/components/home/hero0';
+
+
+import { Playfair_Display, Noto_Sans_SC } from "next/font/google";
+
+const playfair = Playfair_Display({ subsets: ['latin'] });
+const notoSans = Noto_Sans_SC({ subsets: ['latin'] });
+
 
 
 
@@ -67,7 +73,7 @@ export default async function CAMOC(
 		<main>
 
 
-			<Hero />
+			<Hero0 />
 		 
 
 			<Philanthropy />
@@ -118,7 +124,7 @@ export default async function CAMOC(
 
 
 
-function Hero1() {
+function Hero9() {
 	return(
 		<div></div>
 	);
