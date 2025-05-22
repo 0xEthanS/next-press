@@ -44,7 +44,7 @@ interface CarouselProps {
 
 
 const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
-	const slideRef = useRef<HTMLLIElement>(null);
+	const slideRef = useRef<HTMLDivElement>(null);
 
 	const xRef = useRef(0);
 	const yRef = useRef(0);
@@ -127,7 +127,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
 				[transform-style:preserve-3d]
 			"
 		>
-			<li
+			<div
 				className="
 					flex 
 					flex-1 
@@ -159,6 +159,8 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
 					transformOrigin: "bottom",
 				}}
 			>
+
+				
 				<div
 					className="
 						absolute 
@@ -214,6 +216,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
 					)}
 				</div>
 
+
 				<article
 					className={`relative p-[4vmin] transition-opacity duration-1000 ease-in-out ${
 						current === index ? "opacity-100 visible" : "opacity-0 invisible"
@@ -235,7 +238,9 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
                     */}
 
 				</article>
-			</li>
+
+
+			</div>
 		</div>
 	);
 };
@@ -322,7 +327,7 @@ export function Carousel(
 		>
 
 
-			<ul
+			<div
 				className="
 					absolute 
 					flex 
@@ -344,7 +349,7 @@ export function Carousel(
 						handleSlideClick={handleSlideClick}
 					/>
 				))}
-			</ul>
+			</div>
 
 
 

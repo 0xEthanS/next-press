@@ -3,6 +3,7 @@ import {
     getPagesForStaticGeneration 
 } from "@/lib/wordpress";
 import { PageContent } from "@/components/pages/page-templates";
+import { PageFrame } from "@/components/pages/page-frame";
 import { processWPContent } from '@/components/wp/parsing/helpers/process-wp-content';
 import { ServerContentParser } from "@/components/wp/parsing/server-content-parser";
 import { ClientContentParser } from "@/components/wp/parsing/client-content-parser";
@@ -53,10 +54,12 @@ export default async function Page(
 
 
 	const params = await props.params
+	console.log("Params: ", params)
     const slug = params.slug
 
 	const isStaticRoute = slugsArray.includes(slug);
     console.log("isStaticRouteValue: ", isStaticRoute)
+	
 
 
 
@@ -74,7 +77,7 @@ export default async function Page(
 	const decodedTitle = title ? decode(title) : '';
 
 
-
+ 
 
 
 	const renderedContent = page?.content?.rendered;
@@ -82,6 +85,25 @@ export default async function Page(
 	const processedRenderedContent = typeof renderedContent === 'string'
 		? processWPContent(renderedContent)
 		: '';
+
+
+	//console.log("Content: ", processedRenderedContent)
+
+
+
+    let finalDate
+
+
+	const date = page?.date;
+	const modified = page?.modified;
+
+    if (date === modified) {
+        finalDate = date;
+    } else {
+        finalDate = modified;
+    }
+
+	
 
 
 
@@ -97,35 +119,15 @@ export default async function Page(
 
 	return (
         <div className="">
-            <PageContent>
+            <PageFrame
+				title={decodedTitle}
+                date={finalDate}
+			>
 
 
 
 
-				{title && 
-					<div className="
-							font-sans 
-							tracking-[-0.01em] 
-							text-4xl 
-							leading-[1.1] 
-							sm:text-6xl 
-							sm:leading-[1.07] 
-							flex-none 
-							
-							font-bold 
-							mb-8
 
-							mt-[45px] 
-							sm:mt-0
-						
-							text-home-text 
-						"
-					>
-						{decodedTitle}
-					</div>
-
-					//mt-[17px] gives a 0px margin below the header
-				}
 
 
 
@@ -135,7 +137,7 @@ export default async function Page(
                     // Use server-side parsing for static routes
                     (<ServerContentParser 
                         content={processedRenderedContent}
-                        className="space-y-6 sm:space-y-8"
+                        className=""
                     />)
 
                 ) : (
@@ -150,7 +152,7 @@ export default async function Page(
 
 
 
-			</PageContent>
+			</PageFrame>
         </div>
     ); 
 }

@@ -15,7 +15,7 @@ const getPostImageUrl = async (post: Post): Promise<string> => {
 
     
     // Updated Case 1
-    if (post.featured_media && post.featured_media !== 0) {
+    if (post?.featured_media && post?.featured_media !== 0) {
 
         try {
 
@@ -57,9 +57,9 @@ const getPostImageUrl = async (post: Post): Promise<string> => {
 
 
     // Case 2: Image embedded in post content HTML
-    if (post.content && post.content.rendered) {
+    if (post?.content && post?.content?.rendered) {
         try {
-            const $ = cheerio.load(post.content.rendered);
+            const $ = cheerio.load(post?.content?.rendered);
             const images = $('img');
             
             for (let i = 0; i < images.length; i++) {
@@ -87,9 +87,9 @@ const getPostImageUrl = async (post: Post): Promise<string> => {
     
 
     // Case 3: Check for URLs in post excerpt
-    if (post.excerpt && post.excerpt.rendered) {
+    if (post?.excerpt && post?.excerpt?.rendered) {
         try {
-            const $ = cheerio.load(post.excerpt.rendered);
+            const $ = cheerio.load(post?.excerpt?.rendered);
             const imgSrc = $('img').first().attr('src');
             if (imgSrc) {
                 return imgSrc;
@@ -101,9 +101,9 @@ const getPostImageUrl = async (post: Post): Promise<string> => {
     
 
     // Case 4: Check for linked images in content
-    if (post.content && post.content.rendered) {
+    if (post?.content && post?.content?.rendered) {
         try {
-            const $ = cheerio.load(post.content.rendered);
+            const $ = cheerio.load(post?.content?.rendered);
             const linkHref = $('a[href$=".jpg"], a[href$=".jpeg"], a[href$=".png"], a[href$=".gif"]')
                 .first()
                 .attr('href');

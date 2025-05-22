@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+
 @plugin "@tailwindcss/typography";
 
 
@@ -13,7 +14,19 @@
 
 
 
+
+
+
+
 @theme {
+	--font-hanken:   var(--font-hanken);
+  	--font-cormorant-g: var(--font-cormorant-g);
+	--font-cormorant: var(--font-cormorant);
+  	--font-jetbrains: var(--font-jetbrains);
+	--font-libre: var(--font-libre);
+
+
+	
 	--color-foreground: hsl(var(--foreground));
 
 
@@ -25,7 +38,7 @@
 	--color-custom-tan: #ffd2a6;
 
 
-	--color-navbar-background: #E8C27D;
+	--color-navbar-background: oklch(60% 0.118 184.704);
 	--color-navbar-text: #fbfaf4;
 	--color-navbar-dropdown-background: #fbfaf4;
 	--color-navbar-dropdown-htext: #13343b;
@@ -122,6 +135,11 @@
 
 
 
+
+
+
+
+
 @utility container {
 	margin-inline: auto;
 	padding-inline: 2rem;
@@ -136,6 +154,10 @@
 
 
 
+
+
+
+
 @layer base {
 	*,
 	::after,
@@ -145,6 +167,9 @@
 		border-color: var(--color-gray-200, currentcolor);
 	}
 }
+
+
+
 
 
 
@@ -186,6 +211,9 @@
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-ring: var(--sidebar-ring);
 }
+
+
+
 
 
 

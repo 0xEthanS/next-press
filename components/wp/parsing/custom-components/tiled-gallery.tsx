@@ -8,19 +8,23 @@ import Image from 'next/image';
 
 // TiledGallery component included directly in this file
 const TiledGallery = ({ images }: { images: any }) => {
-	// Early return if no images
+
+
 	if (!images || images.length === 0) {
 	  	return null;
 	}
-  
+
+
+
+ 
 	// For this specific layout (1 large image on left, 2 smaller images stacked on right)
 	if (images.length === 3) {
 		return (
-			<div className="my-8 w-full">
+			<figure className="w-full">
 				{/* Container using flexbox for horizontal layout */}
-				<div className="flex flex-col md:flex-row gap-2">
+				<div className="flex flex-row gap-2">
 					{/* Left image (large, approximately 67% width) */}
-					<div className="md:w-2/3 overflow-hidden rounded-lg border bg-white">
+					<div className="w-2/3 overflow-hidden rounded-lg border bg-white">
 						<Image 
 							src={images[0].src} 
 							alt={images[0].alt || ''} 
@@ -31,7 +35,7 @@ const TiledGallery = ({ images }: { images: any }) => {
 					</div>
 					
 					{/* Right container for the two smaller images (approximately 33% width) */}
-					<div className="md:w-1/3 flex flex-col gap-2">
+					<div className="w-1/3 flex flex-col gap-2">
 					
 						{/* Top right image */}
 						<div className="overflow-hidden rounded-lg border bg-white">
@@ -58,28 +62,34 @@ const TiledGallery = ({ images }: { images: any }) => {
 					</div>
 					
 				</div>
-			</div>
+			</figure>
 		);
 	}
   
+
+
+
 	// Fallback for any other number of images - simple grid
 	return (
-	  <div className="my-8 w-full">
-		<div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-		  {images.map((image:any, index:any) => (
-			<div key={index} className="overflow-hidden rounded-lg border bg-white">
-			  <Image 
-				src={image.src} 
-				alt={image.alt || ''} 
-				width={image.width} 
-				height={image.height} 
-				className="w-full h-auto object-cover" 
-			  />
+		<div className="my-8 w-full">
+			<div className="grid grid-cols-2 gap-2">
+				{images.map((image:any, index:any) => (
+					<div key={index} className="overflow-hidden rounded-lg border bg-white">
+						<Image 
+							src={image.src} 
+							alt={image.alt || ''} 
+							width={image.width} 
+							height={image.height} 
+							className="w-full h-auto object-cover" 
+						/>
+					</div>
+				))}
 			</div>
-		  ))}
 		</div>
-	  </div>
 	);
+
+
+
 };
 
 
@@ -87,8 +97,12 @@ const TiledGallery = ({ images }: { images: any }) => {
 
 // Helper function to extract images from gallery
 const extractImagesFromGallery = (galleryNode:any) => {
+
 	const images:any[] = [];
 	
+
+
+
 	const findImages = (node:any) => {
 		if (!node) return;
 		
@@ -113,10 +127,20 @@ const extractImagesFromGallery = (galleryNode:any) => {
 		}
 	};
 	
+
+
+
 	// Start recursive search from the gallery container
 	findImages(galleryNode);
 	
+
+
+
 	return images;
+
+
+
+
 };
 
 
