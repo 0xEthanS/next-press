@@ -50,12 +50,20 @@ export default async function Page(
     }
 ) {
 
+    const pagesData = await getPagesForStaticGeneration(slugsArray);
+    //console.log("Pages Data: ", pagesData)
+
+
     console.log("Eyyyyyyyyyyy, the Page() function ran")
 
 
 	const params = await props.params
 	console.log("Params: ", params)
+
+
+
     const slug = params.slug
+    console.log('Slug: ', slug)
 
 	const isStaticRoute = slugsArray.includes(slug);
     console.log("isStaticRouteValue: ", isStaticRoute)
@@ -63,10 +71,15 @@ export default async function Page(
 
 
 
+	//const page = await getPageBySlug(slug);
+
+    const page = pagesData[slug]
+    //console.log("Other Page: ", otherPage)
 
 
 
-	const page = await getPageBySlug(slug);
+
+
 
 
 	const title = page?.title?.rendered

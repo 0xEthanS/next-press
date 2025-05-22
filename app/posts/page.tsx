@@ -9,7 +9,14 @@ import {
 } from "@/lib/wordpress";
 
 //import { Post, Author, Tag, Category} from "@/lib/types"
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { 
+	Pagination, 
+	PaginationContent, 
+	PaginationItem, 
+	PaginationLink, 
+	PaginationNext, 
+	PaginationPrevious 
+} from "@/components/ui/pagination";
 import { PostCard } from "@/app/posts/components/post-cards";
 import { Filter } from "@/app/posts/components/filter";
 import { EmailForm0 } from "@/components/email-form";
