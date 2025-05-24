@@ -1,0 +1,54 @@
+# Non-Commercial Software License
+
+**Copyright (c) 2025 Ethan Sutherand**
+
+## License Grant
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to use the Software for **non-commercial purposes only**, subject to the following conditions:
+
+## Permitted Uses
+
+You may use this Software for:
+- Personal use and experimentation
+- Educational purposes and academic research
+- Non-profit organization activities
+- Internal evaluation and testing (up to 30 days for commercial entities)
+
+## Prohibited Uses
+
+You may **NOT** use this Software for:
+- Any commercial purpose or activity
+- Generating revenue, directly or indirectly
+- Use within a for-profit organization's production systems
+- Distribution as part of a commercial product or service
+- Any use that provides commercial advantage or monetary compensation
+
+## Commercial Licensing
+
+Commercial use requires a separate commercial license. For commercial licensing inquiries, please contact:
+
+**Email:** 0xethans@gmail.com
+
+## Redistribution
+
+You may share copies of this Software provided that:
+- All copyright notices and this license are included
+- No modifications are made to the Software
+- It is clearly marked as subject to this non-commercial license
+- You do not charge any fees for the Software itself
+
+## Modifications
+
+You may modify the Software for your own non-commercial use, but you may not distribute modified versions without explicit written permission.
+
+## Disclaimer
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## Termination
+
+This license automatically terminates if you violate any of its terms. Upon termination, you must cease all use and destroy all copies of the Software.
+
+---
+
+*For questions about this license, contact 0xethans@gmail.com*
