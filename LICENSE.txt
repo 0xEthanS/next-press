@@ -1,6 +1,6 @@
 # Non-Commercial Software License
 
-**Copyright (c) 2025 Ethan Sutherand**
+**Copyright (c) 2025 Ethan Sutherland**
 
 ## License Grant
 
